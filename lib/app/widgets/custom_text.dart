@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:google_fonts/google_fonts.dart';
-import 'package:squeeze/app/core/constant/app_constants.dart';
-import 'package:squeeze/app/core/logger/logger.dart';
-import 'package:squeeze/app/core/sessions/sessions.dart';
+
 import 'package:squeeze/app_controller.dart';
 
 class CText extends StatelessWidget {
@@ -22,6 +20,8 @@ class CText extends StatelessWidget {
   final TextStyle? style;
   final FontStyle? fontStyle;
   final Locale? locale;
+  final bool autoSize;
+  final List<double>? presetFontSizes;
 
   CText({
     required this.text,
@@ -39,6 +39,8 @@ class CText extends StatelessWidget {
     this.style,
     this.fontStyle,
     this.locale,
+    this.autoSize = false,
+    this.presetFontSizes,
   });
 
   @override
@@ -48,7 +50,7 @@ class CText extends StatelessWidget {
       maxLines: maxLines,
       textAlign: textAlign,
       overflow: overflow,
-      softWrap: false,
+      // softWrap: false,
       locale: locale,
       textDirection: textDirection != null
           ? textDirection
@@ -67,7 +69,7 @@ class CText extends StatelessWidget {
                   fontSize: fontSize,
                   fontWeight: fontWeight,
                 )
-              : GoogleFonts.cairo(
+              : GoogleFonts.almarai(
                   height: height ?? 1.4,
                   fontStyle: fontStyle,
                   decoration: decoration,

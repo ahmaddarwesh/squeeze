@@ -23,6 +23,7 @@ class CAppBar extends StatelessWidget with PreferredSizeWidget {
       centerTitle: true,
       elevation: 0,
       actions: actions,
+      automaticallyImplyLeading: false,
     );
   }
 

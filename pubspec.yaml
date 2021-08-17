@@ -2,29 +2,32 @@ name: squeeze
 version: 1.0.0+1
 publish_to: none
 description: Cleaning services.
-environment: 
+environment:
   sdk: '>=2.12.0 <3.0.0'
 
-dependencies: 
+dependencies:
   get: 4.3.8
   supercharged: 2.0.0
   get_storage: 2.0.3
   get_cli: 1.6.0
   google_fonts: 2.1.0
   fluttericon: 2.0.0
-  flutter_html: 2.1.1
   graphql_flutter: ^5.0.0
   gql_dio_link: ^0.1.0
   dio_cookie_manager: ^2.0.0
+  flutter_screenutil: ^5.0.0+2
+  flutter_svg: ^0.22.0
   logger: any
   google_maps_flutter: ^2.0.6
   flutter:
     sdk: flutter
 
-dev_dependencies: 
-  flutter_test: 
+dev_dependencies:
+  flutter_test:
     sdk: flutter
 
-flutter: 
+flutter:
   uses-material-design: true
 
+  assets:
+    - assets/images/

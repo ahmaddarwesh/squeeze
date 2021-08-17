@@ -7,6 +7,7 @@ class Themes {
   static final light = ThemeData.light().copyWith(
     primaryColor: secondaryColor,
     accentColor: white,
+
     // textTheme: GoogleFonts.poppinsTextTheme(),
   );
   static final dark = ThemeData.dark().copyWith(

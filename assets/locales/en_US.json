@@ -1,11 +1,23 @@
 {
   "language": "Language",
   "address": "Address",
+  "english": "English",
+  "arabic": "Arabic",
   "next": "Next",
   "confirm": "Confirm",
   "app_name": "Squeeze",
   "get_started": "Let's Get Started",
   "find_the_best": "Find the best",
   "services": "services",
-  "that_matter_to_you": "that matter \nto you"
+  "that_matter_to_you": "that matter \nto you",
+  "the_services_you_need": "The Services you need\\nat your doorstep",
+  "standard_cleaning": "Standard Cleaning",
+  "deep_cleaning": "Deep Cleaning",
+  "laundry": "Laundry",
+  "carpet_sofa_cleaning": "Carpet & Sofa Cleaning",
+  "car_wash": "Car Wash",
+  "maintenance": "Maintenance",
+  "select_category": "Select category",
+  "how_it_works": "How it Works",
+  "safe_and_verified_services": "100% safe and verified services"
 }

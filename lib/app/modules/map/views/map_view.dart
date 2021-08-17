@@ -35,11 +35,11 @@ class MapView extends GetView<MapController> {
                     onCameraIdle: () {
                       controller.update();
                     },
-                    markers: <Marker>[
-                      Marker(
-                          markerId: MarkerId("asd"),
-                          position: controller.position),
-                    ].toSet(),
+                    // markers: <Marker>[
+                    //   Marker(
+                    //       markerId: MarkerId("asd"),
+                    //       position: controller.position),
+                    // ].toSet(),
                     zoomControlsEnabled: false,
                   )
                 : Container(),
@@ -60,7 +60,9 @@ class MapView extends GetView<MapController> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: CButton(
         text: "Confirm",
-        onTap: () {},
+        onTap: () {
+          Get.back();
+        },
         color: secondaryColor,
         width: Get.width * .7,
         height: 50,

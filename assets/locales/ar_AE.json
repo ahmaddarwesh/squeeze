@@ -1,5 +1,7 @@
 {
   "language": "اللغة",
+  "english": "انجليزي",
+  "arabic": "عربي",
   "address": "العنوان",
   "next": "التالي",
   "confirm": "موافق",
@@ -7,5 +9,15 @@
   "get_started": "هيا بنا نبدأ",
   "find_the_best": "العثور على",
   "services": "الخدمات",
-  "that_matter_to_you": " المهمة لك"
+  "that_matter_to_you": "المهمة لك",
+  "the_services_you_need": "الخدمات التي تحتاجها\nعلى عتبة دارك",
+  "standard_cleaning": "التنظيف القياسي",
+  "deep_cleaning": "تنظيف عميق",
+  "laundry": "مغسلة",
+  "carpet_sofa_cleaning": "تنظيف السجاد والأريكة",
+  "car_wash": "غسيل سيارة",
+  "maintenance": "صيانة",
+  "select_category": "إختر فئة",
+  "how_it_works": "كيف يعمل",
+  "safe_and_verified_services": "100٪ خدمات آمنة وموثوقة"
  }
