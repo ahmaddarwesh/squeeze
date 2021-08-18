@@ -82,6 +82,7 @@ class AccountView extends GetView<AccountController> {
         text: LocaleKeys.welcome.tr,
         color: secondaryColor,
         fontSize: 20.sp,
+        height: 1.5,
         fontWeight: FontWeight.w700,
       ),
     );
