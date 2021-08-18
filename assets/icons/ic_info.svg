@@ -1,0 +1,14 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50" height="50">
+	<title>Menu</title>
+	<defs>
+		<image  width="50" height="50" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAAXNSR0IB2cksfwAAAKtQTFRFAAAAMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExXq95TQAAADl0Uk5TAAIhR1RgATmExPj/EXzcDof0VeXrvZR9cAmc2jAZ0Ugk3uSvgW9l1WNAP39bA6IWOMthzPDg5t1M9CQYoAAAAeJJREFUeJydlmebwiAMgNNabStu7XDv84b7lv//lx2B6tNCUI98UJ+EVxIyAIAQxy155bJXch3KqknFD8Iqy6QaBn7lAVCrN5gijXrtDtBstVUApd1qmohON1vTi+IkTZM46mWKbocE+gNpHiajW9TOKBlK7aCvE+OJMIVT1TANhWEyVg2zOeoXpAOdBdrmM2UPQSwNZ1NbCqawT194tTKmoLISvuXjEZGvTQDKWpxBzlmxxz0CQOxzC7WJ+Vg+KIwKxtO95rSFZ6VE/rLZvBY1NTy3Vva7nd9Syhu68V7Uoftt+c91zCDl+YeixJzWhZNYu2rOt4hsFeUU6xpD9rGuFCPs9oztd6oW683n3wH/TlQjwOGg6xK+NMg8HOlmSkYyaod3be+5HgeH90/VAZeT0XMEQMQXu1Din/GzSMwXl8Cjoz+eTkddi/F7cOafqW78ZOyka1O+uGxCvhj7NiEGx2hEOmYIn0Zk+IZDphF5yIZUkkiWSkPBkEhWMIayJJFrWZLFTyPX4idbjERuLUY2MoncGpkcFxSSGxfkUNKR/FAiR98PY78FRXH0UQM2VsuoOGCpMe5cLoWSUMe4zWVhcSXZXHw216vNJQ4WTwWweZCAxbMH5d+PKyn4hDufTU+4P8amM+xStF3PAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<g id="Menu">
+		<g id="About Us">
+			<use id="Vector Smart Object" href="#img1" x="0" y="0" />
+		</g>
+	</g>
+</svg>

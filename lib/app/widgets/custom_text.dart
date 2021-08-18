@@ -61,7 +61,11 @@ class CText extends StatelessWidget {
           ? style
           : AppController.to.isEnglish
               ? GoogleFonts.poppins(
-                  height: height ?? 1.4,
+                  height: height != null
+                      ? height
+                      : AppController.to.isEnglish
+                          ? 1.4
+                          : 1.1,
                   fontStyle: fontStyle,
                   decoration: decoration,
                   letterSpacing: letterSpacing,
@@ -70,7 +74,11 @@ class CText extends StatelessWidget {
                   fontWeight: fontWeight,
                 )
               : GoogleFonts.almarai(
-                  height: height ?? 1.4,
+                  height: height != null
+                      ? height
+                      : AppController.to.isEnglish
+                          ? 1.4
+                          : 1.1,
                   fontStyle: fontStyle,
                   decoration: decoration,
                   letterSpacing: letterSpacing,

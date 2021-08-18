@@ -9,7 +9,7 @@
   "get_started": "هيا بنا نبدأ",
   "find_the_best": "العثور على",
   "services": "الخدمات",
-  "that_matter_to_you": "المهمة لك",
+  "that_matter_to_you": "المهمة لك\n",
   "the_services_you_need": "الخدمات التي تحتاجها\nعلى عتبة دارك",
   "standard_cleaning": "التنظيف القياسي",
   "deep_cleaning": "تنظيف عميق",
@@ -19,5 +19,10 @@
   "maintenance": "صيانة",
   "select_category": "إختر فئة",
   "how_it_works": "كيف يعمل",
-  "safe_and_verified_services": "100٪ خدمات آمنة وموثوقة"
+  "safe_and_verified_services": "100٪ خدمات آمنة وموثوقة",
+  "welcome": "مرحباً!",
+  "login_signup": "تسجيل / دخول",
+  "about_us": "من نحن",
+  "help": "مساعدة",
+  "squeeze_app_version": "تطبيق Squeeze. إصدار 1.1"
  }

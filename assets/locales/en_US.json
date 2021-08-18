@@ -19,5 +19,11 @@
   "maintenance": "Maintenance",
   "select_category": "Select category",
   "how_it_works": "How it Works",
-  "safe_and_verified_services": "100% safe and verified services"
+  "safe_and_verified_services": "100% safe and verified services",
+  "welcome": "Welcome!",
+  "login_signup": "Login/Signup",
+  "about_us": "About us",
+  "help": "Help",
+  "squeeze_app_version": "Squeeze App. Version 1.1"
+
 }

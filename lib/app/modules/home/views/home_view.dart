@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttericon/entypo_icons.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:squeeze/app/core/logger/logger.dart';
 import 'package:squeeze/app/routes/app_pages.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:squeeze/app/widgets/custom_appbar.dart';
@@ -43,7 +42,7 @@ class HomeView extends GetView<HomeController> {
                   textAlign: TextAlign.center,
                   color: Colors.black,
                   fontWeight: FontWeight.w400,
-                  fontSize: 11,
+                  fontSize: 11.sp,
                 ),
                 SizedBox(height: 15),
               ],
@@ -84,7 +83,7 @@ class HomeView extends GetView<HomeController> {
                   child: CText(
                     text: LocaleKeys.the_services_you_need.tr,
                     color: secondaryColor,
-                    fontSize: 16,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -116,7 +115,7 @@ class HomeView extends GetView<HomeController> {
                   overflow: TextOverflow.ellipsis,
                   color: black,
                   fontWeight: FontWeight.w500,
-                  fontSize: 17,
+                  fontSize: 17.sp,
                 ),
               ),
               Icon(
@@ -130,7 +129,9 @@ class HomeView extends GetView<HomeController> {
       ),
       actions: [
         CButton(
-          onTap: () {},
+          onTap: () {
+            Get.toNamed(Routes.ACCOUNT);
+          },
           padding: EdgeInsets.only(right: 20),
           child: Icon(
             FontAwesome5.user_circle,

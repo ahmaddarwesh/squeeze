@@ -6,9 +6,9 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:squeeze/app/core/client/graphql_client.dart';
 import 'package:squeeze/app/core/constant/app_constants.dart';
 import 'package:squeeze/app/core/sessions/sessions.dart';
-import 'package:squeeze/app/modules/splash/views/splash_view.dart';
 import 'package:squeeze/app_controller.dart';
 import 'package:squeeze/generated/locales.g.dart';
+
 import 'app/routes/app_pages.dart';
 import 'app/theme/app_themes.dart';
 

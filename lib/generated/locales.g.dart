@@ -32,6 +32,11 @@ class LocaleKeys {
   static const select_category = 'select_category';
   static const how_it_works = 'how_it_works';
   static const safe_and_verified_services = 'safe_and_verified_services';
+  static const welcome = 'welcome';
+  static const login_signup = 'login_signup';
+  static const about_us = 'about_us';
+  static const help = 'help';
+  static const squeeze_app_version = 'squeeze_app_version';
 }
 
 class Locales {
@@ -46,7 +51,7 @@ class Locales {
     'get_started': 'هيا بنا نبدأ',
     'find_the_best': 'العثور على',
     'services': 'الخدمات',
-    'that_matter_to_you': 'المهمة لك',
+    'that_matter_to_you': 'المهمة لك\n',
     'the_services_you_need': 'الخدمات التي تحتاجها\nعلى عتبة دارك',
     'standard_cleaning': 'التنظيف القياسي',
     'deep_cleaning': 'تنظيف عميق',
@@ -57,6 +62,11 @@ class Locales {
     'select_category': 'إختر فئة',
     'how_it_works': 'كيف يعمل',
     'safe_and_verified_services': '100٪ خدمات آمنة وموثوقة',
+    'welcome': 'مرحباً!',
+    'login_signup': 'تسجيل / دخول',
+    'about_us': 'من نحن',
+    'help': 'مساعدة',
+    'squeeze_app_version': 'تطبيق Squeeze. إصدار 1.1',
   };
   static const en_US = {
     'language': 'Language',
@@ -80,5 +90,10 @@ class Locales {
     'select_category': 'Select category',
     'how_it_works': 'How it Works',
     'safe_and_verified_services': '100% safe and verified services',
+    'welcome': 'Welcome!',
+    'login_signup': 'Login/Signup',
+    'about_us': 'About us',
+    'help': 'Help',
+    'squeeze_app_version': 'Squeeze App. Version 1.1',
   };
 }

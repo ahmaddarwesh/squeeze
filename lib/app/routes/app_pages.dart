@@ -20,18 +20,12 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => MediaQuery(
-        data: Get.mediaQuery.copyWith(textScaleFactor: 1.0),
-        child: HomeView(),
-      ),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
       name: _Paths.SPLASH,
-      page: () => MediaQuery(
-        data: Get.mediaQuery.copyWith(textScaleFactor: 1.0),
-        child: SplashView(),
-      ),
+      page: () => SplashView(),
       binding: SplashBinding(),
     ),
     GetPage(
