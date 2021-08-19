@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:get/get.dart';
 import 'package:squeeze/app/core/constant/assets_const.dart';
+import 'package:squeeze/app/routes/app_pages.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:squeeze/app/widgets/custom_appbar.dart';
 import 'package:squeeze/app/widgets/custom_button.dart';
@@ -12,7 +11,6 @@ import 'package:squeeze/app/widgets/custom_text.dart';
 import 'package:squeeze/app/widgets/find_the_best.dart';
 import 'package:squeeze/app_controller.dart';
 import 'package:squeeze/generated/locales.g.dart';
-import 'package:supercharged/supercharged.dart';
 import '../controllers/account_controller.dart';
 
 class AccountView extends GetView<AccountController> {
@@ -25,25 +23,29 @@ class AccountView extends GetView<AccountController> {
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            AppController.to.isAuth
-                ? Column(
-                    crossAxisAlignment: AppController.to.crossAxisAlignment,
-                    children: [
-                      buildWelcome(),
-                      SizedBox(height: 59),
-                      Divider(),
-                      buildFindTheBest(),
-                      SizedBox(height: 60),
-                      buildLoginSignup(),
-                      SizedBox(height: 70),
-                    ],
-                  )
-                : Column(
-                    children: [
-                      buildGoodMorning(),
-                      Divider(),
-                    ],
-                  ),
+            if (AppController.to.isAuth)
+              Column(
+                crossAxisAlignment: AppController.to.crossAxisAlignment,
+                children: [
+                  buildWelcome(),
+                  SizedBox(height: 59),
+                  Divider(),
+                  buildFindTheBest(),
+                  SizedBox(height: 60),
+                  buildLoginSignup(),
+                  SizedBox(height: 70),
+                ],
+              )
+            else
+              Directionality(
+                textDirection: AppController.to.textDirection,
+                child: Column(
+                  children: [
+                    buildGoodMorning(),
+                    Divider(),
+                  ],
+                ),
+              ),
             buildAuthOptions(),
             SizedBox(height: 100),
             buildBottomSection(),
@@ -113,7 +115,7 @@ class AccountView extends GetView<AccountController> {
           physics: NeverScrollableScrollPhysics(),
           children: [
             buildItem(LocaleKeys.language.tr, IC_LANGUAGE, onTap: () {
-              AppController.to.changeLanguage();
+              Get.toNamed(Routes.CHANGE_LANGUAGE);
             }),
             buildItem(LocaleKeys.about_us.tr, IC_INFO),
             buildItem(LocaleKeys.help.tr, IC_QUESTION),
@@ -141,7 +143,7 @@ class AccountView extends GetView<AccountController> {
             CText(
               text: title,
               fontWeight: FontWeight.w400,
-              color: Colors.black,
+              color: black,
               fontSize: 15.sp,
             ),
           ],
@@ -159,7 +161,7 @@ class AccountView extends GetView<AccountController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CText(
-              text: "Good morning,\nAhmad",
+              text: LocaleKeys.good_morning.trArgs(["AhmadDar"]),
               fontSize: 18.sp,
               height: 1.1,
               color: secondaryColor,
@@ -195,10 +197,12 @@ class AccountView extends GetView<AccountController> {
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           children: [
-            buildItem("Profile", IC_PROFILE),
-            buildItem("Wallet", IC_WALLET),
-            buildItem("My Booking", IC_MY_BOOKING),
-            buildItem("Addresses", IC_ADDRESSES),
+            buildItem(LocaleKeys.profile.tr, IC_PROFILE, onTap: () {
+              Get.toNamed(Routes.PROFILE);
+            }),
+            buildItem(LocaleKeys.wallet.tr, IC_WALLET),
+            buildItem(LocaleKeys.my_booking.tr, IC_MY_BOOKING),
+            buildItem(LocaleKeys.addresses.tr, IC_ADDRESSES),
           ],
         ),
       ),

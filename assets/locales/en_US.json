@@ -24,6 +24,13 @@
   "login_signup": "Login/Signup",
   "about_us": "About us",
   "help": "Help",
-  "squeeze_app_version": "Squeeze App. Version 1.1"
+  "squeeze_app_version": "Squeeze App. Version 1.1",
+  "good_morning": "Good morning,\n%s",
+  "profile": "Profile",
+  "wallet": "Wallet",
+  "my_booking": "My Booking",
+  "addresses": "My Addresses",
+  "update": "Update"
+
 
 }

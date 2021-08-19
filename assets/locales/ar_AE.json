@@ -24,5 +24,11 @@
   "login_signup": "تسجيل / دخول",
   "about_us": "من نحن",
   "help": "مساعدة",
-  "squeeze_app_version": "تطبيق Squeeze. إصدار 1.1"
+  "squeeze_app_version": "تطبيق Squeeze. إصدار 1.1",
+  "good_morning": "صباح الخير,\n%s",
+  "profile": "الملف الشخصي",
+  "wallet": "المحفظة",
+  "my_booking": "الحجز",
+  "addresses": "عناويني",
+  "update": "تحديث"
  }

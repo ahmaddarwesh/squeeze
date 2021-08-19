@@ -1,12 +1,17 @@
 import 'package:flutter/cupertino.dart';
+
 import 'package:get/get.dart';
 
 import 'package:squeeze/app/modules/account/bindings/account_binding.dart';
 import 'package:squeeze/app/modules/account/views/account_view.dart';
+import 'package:squeeze/app/modules/change_language/bindings/change_language_binding.dart';
+import 'package:squeeze/app/modules/change_language/views/change_language_view.dart';
 import 'package:squeeze/app/modules/home/bindings/home_binding.dart';
 import 'package:squeeze/app/modules/home/views/home_view.dart';
 import 'package:squeeze/app/modules/map/bindings/map_binding.dart';
 import 'package:squeeze/app/modules/map/views/map_view.dart';
+import 'package:squeeze/app/modules/profile/bindings/profile_binding.dart';
+import 'package:squeeze/app/modules/profile/views/profile_view.dart';
 import 'package:squeeze/app/modules/splash/bindings/splash_binding.dart';
 import 'package:squeeze/app/modules/splash/views/splash_view.dart';
 
@@ -39,6 +44,16 @@ class AppPages {
       name: _Paths.ACCOUNT,
       page: () => AccountView(),
       binding: AccountBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGE_LANGUAGE,
+      page: () => ChangeLanguageView(),
+      binding: ChangeLanguageBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => ProfileView(),
+      binding: ProfileBinding(),
     ),
   ];
 }

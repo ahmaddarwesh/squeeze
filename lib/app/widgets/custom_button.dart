@@ -12,6 +12,8 @@ class CButton extends StatelessWidget {
   final double? width;
   final double? height;
   final double? radius;
+  final Border? border;
+  final EdgeInsets? margin;
 
   CButton({
     this.text,
@@ -22,13 +24,20 @@ class CButton extends StatelessWidget {
     this.width,
     this.height,
     this.radius,
+    this.border,
+    this.margin,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width,
+      margin: margin,
       height: height,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(radius ?? 15),
+        border: border,
+      ),
       child: CupertinoButton(
         borderRadius: BorderRadius.circular(radius ?? 15),
         child: child ??

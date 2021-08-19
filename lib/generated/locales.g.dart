@@ -37,6 +37,12 @@ class LocaleKeys {
   static const about_us = 'about_us';
   static const help = 'help';
   static const squeeze_app_version = 'squeeze_app_version';
+  static const good_morning = 'good_morning';
+  static const profile = 'profile';
+  static const wallet = 'wallet';
+  static const my_booking = 'my_booking';
+  static const addresses = 'addresses';
+  static const update = 'update';
 }
 
 class Locales {
@@ -67,6 +73,12 @@ class Locales {
     'about_us': 'من نحن',
     'help': 'مساعدة',
     'squeeze_app_version': 'تطبيق Squeeze. إصدار 1.1',
+    'good_morning': 'صباح الخير,\n%s',
+    'profile': 'الملف الشخصي',
+    'wallet': 'المحفظة',
+    'my_booking': 'الحجز',
+    'addresses': 'عناويني',
+    'update': 'تحديث',
   };
   static const en_US = {
     'language': 'Language',
@@ -95,5 +107,11 @@ class Locales {
     'about_us': 'About us',
     'help': 'Help',
     'squeeze_app_version': 'Squeeze App. Version 1.1',
+    'good_morning': 'Good morning,\n%s',
+    'profile': 'Profile',
+    'wallet': 'Wallet',
+    'my_booking': 'My Booking',
+    'addresses': 'My Addresses',
+    'update': 'Update',
   };
 }
