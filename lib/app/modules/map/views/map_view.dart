@@ -1,12 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
-
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:squeeze/app/core/logger/logger.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:squeeze/app/widgets/custom_button.dart';
 
@@ -22,25 +17,19 @@ class MapView extends GetView<MapController> {
           children: [
             controller.isReady
                 ? GoogleMap(
-                    mapType: MapType.normal,
+                    mapType: MapType.satellite,
                     initialCameraPosition: controller.kGooglePlex,
                     onMapCreated: (GoogleMapController cont) {
                       controller.completer.complete(cont);
                     },
-                    onCameraMove: (location) {
-                      l(info: location);
-                      controller.position = LatLng(
-                          location.target.latitude, location.target.longitude);
-                    },
-                    onCameraIdle: () {
-                      controller.update();
-                    },
+
                     // markers: <Marker>[
                     //   Marker(
                     //       markerId: MarkerId("asd"),
                     //       position: controller.position),
                     // ].toSet(),
                     zoomControlsEnabled: false,
+                    myLocationButtonEnabled: false,
                   )
                 : Container(),
             Positioned(

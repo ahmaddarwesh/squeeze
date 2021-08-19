@@ -38,13 +38,15 @@ class AccountView extends GetView<AccountController> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.only(bottom: 10),
-        child: CText(
-          text: LocaleKeys.squeeze_app_version.tr,
-          fontSize: 9.sp,
-          fontWeight: FontWeight.w500,
-          textAlign: TextAlign.center,
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          padding: EdgeInsets.only(bottom: 0),
+          child: CText(
+            text: LocaleKeys.squeeze_app_version.tr,
+            fontSize: 9.sp,
+            fontWeight: FontWeight.w500,
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );
@@ -96,7 +98,9 @@ class AccountView extends GetView<AccountController> {
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           children: [
-            buildItem(LocaleKeys.language.tr, IC_LANGUAGE),
+            buildItem(LocaleKeys.language.tr, IC_LANGUAGE,onTap: (){
+              AppController.to.changeLanguage();
+            }),
             buildItem(LocaleKeys.about_us.tr, IC_INFO),
             buildItem(LocaleKeys.help.tr, IC_QUESTION),
           ],
@@ -105,10 +109,10 @@ class AccountView extends GetView<AccountController> {
     );
   }
 
-  Widget buildItem(title, icon) {
+  Widget buildItem(title, icon,{onTap}) {
     return CButton(
-      onTap: () {
-        AppController.to.changeLanguage();
+      onTap: (){
+        if(onTap != null) onTap();
       },
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 11),
