@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:squeeze/app/widgets/custom_button.dart';
+import 'package:squeeze/generated/locales.g.dart';
 
 import '../controllers/map_controller.dart';
 
@@ -48,7 +49,7 @@ class MapView extends GetView<MapController> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: CButton(
-        text: "Confirm",
+        text: LocaleKeys.confirm.tr,
         onTap: () {
           Get.back();
         },
