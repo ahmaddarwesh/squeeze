@@ -181,6 +181,7 @@ class AccountView extends GetView<AccountController> {
               LocaleKeys.that_matter_to_you.tr.replaceAll('\n', "") +
               ".",
           maxLines: 1,
+          fontSize: 15.sp,
         )
       ],
     );
