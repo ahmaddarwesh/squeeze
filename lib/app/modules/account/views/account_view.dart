@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fluttericon/elusive_icons.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:get/get.dart';
@@ -12,9 +12,8 @@ import 'package:squeeze/app/widgets/custom_text.dart';
 import 'package:squeeze/app/widgets/find_the_best.dart';
 import 'package:squeeze/app_controller.dart';
 import 'package:squeeze/generated/locales.g.dart';
-
+import 'package:supercharged/supercharged.dart';
 import '../controllers/account_controller.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AccountView extends GetView<AccountController> {
   @override
@@ -25,22 +24,35 @@ class AccountView extends GetView<AccountController> {
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
-          crossAxisAlignment: AppController.to.crossAxisAlignment,
           children: [
-            buildWelcome(),
-            SizedBox(height: 59),
-            Divider(),
-            buildFindTheBest(),
-            SizedBox(height: 60),
-            buildLoginSignup(),
-            SizedBox(height: 70),
+            AppController.to.isAuth
+                ? Column(
+                    crossAxisAlignment: AppController.to.crossAxisAlignment,
+                    children: [
+                      buildWelcome(),
+                      SizedBox(height: 59),
+                      Divider(),
+                      buildFindTheBest(),
+                      SizedBox(height: 60),
+                      buildLoginSignup(),
+                      SizedBox(height: 70),
+                    ],
+                  )
+                : Column(
+                    children: [
+                      buildGoodMorning(),
+                      Divider(),
+                    ],
+                  ),
+            buildAuthOptions(),
+            SizedBox(height: 100),
             buildBottomSection(),
           ],
         ),
       ),
       bottomNavigationBar: SafeArea(
         child: Container(
-          padding: EdgeInsets.only(bottom: 0),
+          padding: EdgeInsets.only(bottom: GetPlatform.isAndroid ? 10 : 0),
           child: CText(
             text: LocaleKeys.squeeze_app_version.tr,
             fontSize: 9.sp,
@@ -89,6 +101,7 @@ class AccountView extends GetView<AccountController> {
       ),
     );
   }
+
   //test
 
   buildBottomSection() {
@@ -99,7 +112,7 @@ class AccountView extends GetView<AccountController> {
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           children: [
-            buildItem(LocaleKeys.language.tr, IC_LANGUAGE,onTap: (){
+            buildItem(LocaleKeys.language.tr, IC_LANGUAGE, onTap: () {
               AppController.to.changeLanguage();
             }),
             buildItem(LocaleKeys.about_us.tr, IC_INFO),
@@ -110,19 +123,19 @@ class AccountView extends GetView<AccountController> {
     );
   }
 
-  Widget buildItem(title, icon,{onTap}) {
+  Widget buildItem(title, icon, {onTap}) {
     return CButton(
-      onTap: (){
-        if(onTap != null) onTap();
+      onTap: () {
+        if (onTap != null) onTap();
       },
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 11),
         child: Row(
           children: [
-            SvgPicture.asset(
-              icon,
-              height: 13,
-              width: 13,
+            Container(
+              height: 14,
+              width: 14,
+              child: SvgPicture.asset(icon),
             ),
             SizedBox(width: 14),
             CText(
@@ -131,6 +144,60 @@ class AccountView extends GetView<AccountController> {
               color: Colors.black,
               fontSize: 14.sp,
             ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  buildGoodMorning() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CText(
+              text: "Good morning,\nAhmad",
+              fontSize: 18.sp,
+              height: 1.1,
+              color: secondaryColor,
+              fontWeight: FontWeight.w700,
+            ),
+            SvgPicture.asset(
+              IC_MOON,
+              width: 40,
+              height: 40,
+            ),
+          ],
+        ),
+        SizedBox(height: 7),
+        CText(
+          text: LocaleKeys.find_the_best.tr +
+              " " +
+              LocaleKeys.services.tr +
+              " " +
+              LocaleKeys.that_matter_to_you.tr.replaceAll('\n', "") +
+              ".",
+          maxLines: 1,
+        )
+      ],
+    );
+  }
+
+  buildAuthOptions() {
+    return Container(
+      child: Directionality(
+        textDirection: AppController.to.textDirection,
+        child: ListView(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          children: [
+            buildItem("Profile", IC_PROFILE),
+            buildItem("Wallet", IC_WALLET),
+            buildItem("My Booking", IC_MY_BOOKING),
+            buildItem("Addresses", IC_ADDRESSES),
           ],
         ),
       ),

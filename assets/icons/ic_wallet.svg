@@ -1,0 +1,14 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 40" width="50" height="40">
+	<title>Menu</title>
+	<defs>
+		<image  width="50" height="40" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAoCAMAAACLrFl+AAAAAXNSR0IB2cksfwAAAGNQTFRFAAAAMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExmTs9SwAAACF0Uk5TABJHYEO6/v8KosH0pXdwrxYBYZymgnSkmCBdRYBaymVvDbpOYgAAAORJREFUeJzdlckOwyAMRA0JWSFb0yXd//8ra6BZTuBa6iVzQDn4ybFHGgN4CZlEJAVslaosjypT6QIUZbzeqyy+REUl8rzyjOtRa9MEZXTt+rg57FfbQVRdayvtPMoSfZwA6C2jcLu4q5rQw/XBf8sESCQ1jQDQWCxhwNdQEYPFCTT4HmLOzxodcqSb4nWC86/IhdPFzjKGjV9ljfHjJ9SNNXtGpqv3+EZGpnpe/Z2KPBa3nn/sAtPLWfymz0LQ/hBGXDBCiRF9jIDlxPhyLMKptz0WnJPEOHzAOK9WQg7h1FuP+Adc8R8efV9PJQAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<g id="Menu">
+		<g id="Wallet">
+			<use id="Wallet Icon" href="#img1" x="0" y="0" />
+		</g>
+	</g>
+</svg>

@@ -1,0 +1,14 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 52" width="50" height="52">
+	<title>Menu</title>
+	<defs>
+		<image  width="50" height="52" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA0CAMAAAD/uJueAAAAAXNSR0IB2cksfwAAAJZQTFRFAAAAMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExO0MbogAAADJ0Uk5TADjLzP/w4DSWzv37B50DtW7+6a8cOdIFW3pacGCcpoJ0pJggXfRcZmloTpsY+TuzKUhqsyiNAAABM0lEQVR4nO2VaXOCQAyGAwQ8qiie9ag9Viqn4P//c82ubaV0kdBpGT/0/RCYTJ4JybuzABRlmKYBJelyBVmIJidXkI3ocHJtIZ1uz1HqI945JV1yvW7nHRgMka3hQBLuiE8gjlxCxurVVvIQ+3ZJl5wqHFOTCT2nM874symVTlyY02Ox5G1suaDiOdxTXHGXvKLiNWwobj9SdQfmXPwFMSzr+7Es5DRIndpGHrZM7RTy2OS4SD3Bc1Pk5Sdd5Cy7DVPykN24L60iYl/l+l7oEeFXm+ELLfJ6zcD1b3UBcahy/VAxS0tLvlnk3/2/WnJAMWyGRBRjLhJTcQQJ/XHTI484poheApARmcZh/bUfxkRgRmh+xQ6NQblsd2rA+KfzJ+aZxwO8LP+cK4mC+ms/iBJV/AZIdEQGUAgJnAAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<g id="Menu">
+		<g id="My Booking">
+			<use id="My Booking Icon" href="#img1" x="0" y="0" />
+		</g>
+	</g>
+</svg>
