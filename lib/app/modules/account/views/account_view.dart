@@ -133,8 +133,8 @@ class AccountView extends GetView<AccountController> {
         child: Row(
           children: [
             Container(
-              height: 14,
-              width: 14,
+              height: 16.w,
+              width: 16.w,
               child: SvgPicture.asset(icon),
             ),
             SizedBox(width: 14),
@@ -142,7 +142,7 @@ class AccountView extends GetView<AccountController> {
               text: title,
               fontWeight: FontWeight.w400,
               color: Colors.black,
-              fontSize: 14.sp,
+              fontSize: 15.sp,
             ),
           ],
         ),
