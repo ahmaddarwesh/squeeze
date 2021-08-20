@@ -43,6 +43,7 @@ class LocaleKeys {
   static const my_booking = 'my_booking';
   static const addresses = 'addresses';
   static const update = 'update';
+  static const logout = 'logout';
 }
 
 class Locales {
@@ -79,6 +80,7 @@ class Locales {
     'my_booking': 'الحجز',
     'addresses': 'عناويني',
     'update': 'تحديث',
+    'logout': 'تسجيل الخروج',
   };
   static const en_US = {
     'language': 'Language',
@@ -113,5 +115,6 @@ class Locales {
     'my_booking': 'My Booking',
     'addresses': 'My Addresses',
     'update': 'Update',
+    'logout': 'Logout',
   };
 }

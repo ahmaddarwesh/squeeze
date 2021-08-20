@@ -23,7 +23,7 @@ class AccountView extends GetView<AccountController> {
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            if (AppController.to.isAuth)
+            if (!AppController.to.isAuth)
               Column(
                 crossAxisAlignment: AppController.to.crossAxisAlignment,
                 children: [
@@ -37,17 +37,21 @@ class AccountView extends GetView<AccountController> {
                 ],
               )
             else
-              Directionality(
-                textDirection: AppController.to.textDirection,
-                child: Column(
-                  children: [
-                    buildGoodMorning(),
-                    Divider(),
-                  ],
-                ),
+              Column(
+                children: [
+                  Directionality(
+                    textDirection: AppController.to.textDirection,
+                    child: Column(
+                      children: [
+                        buildGoodMorning(),
+                        Divider(),
+                      ],
+                    ),
+                  ),
+                  buildAuthOptions(),
+                  SizedBox(height: 100),
+                ],
               ),
-            buildAuthOptions(),
-            SizedBox(height: 100),
             buildBottomSection(),
           ],
         ),
@@ -119,13 +123,21 @@ class AccountView extends GetView<AccountController> {
             }),
             buildItem(LocaleKeys.about_us.tr, IC_INFO),
             buildItem(LocaleKeys.help.tr, IC_QUESTION),
+            Visibility(
+              visible: AppController.to.isAuth,
+              child: buildItem(
+                LocaleKeys.logout.tr,
+                IC_LOGOUT,
+                withRotate: true,
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget buildItem(title, icon, {onTap}) {
+  Widget buildItem(title, icon, {onTap, withRotate = false}) {
     return CButton(
       onTap: () {
         if (onTap != null) onTap();
@@ -137,7 +149,10 @@ class AccountView extends GetView<AccountController> {
             Container(
               height: 16.w,
               width: 16.w,
-              child: SvgPicture.asset(icon),
+              child: RotatedBox(
+                quarterTurns: withRotate ? 190 : 0,
+                child: SvgPicture.asset(icon),
+              ),
             ),
             SizedBox(width: 14),
             CText(

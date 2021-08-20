@@ -17,7 +17,7 @@ class AppController extends GetxController {
 
   var isEnglish = true;
   var languageBox = GetStorage("Squeeze");
-  bool isAuth = false;
+  bool isAuth = true;
 
   Future changeLanguage({String? locale}) async {
     if (locale == null) {

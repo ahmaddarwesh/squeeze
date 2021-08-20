@@ -30,7 +30,8 @@
   "wallet": "Wallet",
   "my_booking": "My Booking",
   "addresses": "My Addresses",
-  "update": "Update"
+  "update": "Update",
+  "logout": "Logout"
 
 
 }
