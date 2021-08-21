@@ -23,7 +23,7 @@ class MyApp extends GetView<AppController> {
   @override
   Widget build(BuildContext context) {
     return GraphQLProvider(
-      client: Client.getClient(),
+      client: Client().getClient(),
       child: ScreenUtilInit(
         designSize: Size(360, 690),
         builder: () {
@@ -34,6 +34,7 @@ class MyApp extends GetView<AppController> {
             locale: Locale(Sessions.read(LANGUAGE, def: EN)),
             theme: Themes.light,
             debugShowCheckedModeBanner: false,
+            transitionDuration: 150.milliseconds,
             translationsKeys: AppTranslation.translations,
             defaultTransition: Transition.rightToLeft,
           );

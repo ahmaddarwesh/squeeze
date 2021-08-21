@@ -7,3 +7,4 @@ const IC_MY_BOOKING = "assets/icons/ic_booking.svg";
 const IC_ADDRESSES = "assets/icons/ic_addresses.svg";
 const IC_MOON = "assets/icons/ic_moon.svg";
 const IC_LOGOUT = "assets/icons/ic_logout.svg";
+const IC_MENU = "assets/icons/ic_menu.svg";

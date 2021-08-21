@@ -10,6 +10,7 @@ abstract class Routes {
   static const ACCOUNT = _Paths.ACCOUNT;
   static const CHANGE_LANGUAGE = _Paths.CHANGE_LANGUAGE;
   static const PROFILE = _Paths.PROFILE;
+  static const REGISTER = _Paths.REGISTER;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const ACCOUNT = '/account';
   static const CHANGE_LANGUAGE = '/change-language';
   static const PROFILE = '/profile';
+  static const REGISTER = '/register';
 }

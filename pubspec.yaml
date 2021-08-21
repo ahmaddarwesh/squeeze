@@ -26,6 +26,8 @@ dependencies:
   flutter_svg: ^0.22.0
   logger: any
   flutter_native_splash: ^1.2.1
+  modal_bottom_sheet: ^2.0.0
+  pin_code_fields: ^7.3.0
 
   flutter:
     sdk: flutter

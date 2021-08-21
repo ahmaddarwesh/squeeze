@@ -12,6 +12,8 @@ import 'package:squeeze/app/modules/map/bindings/map_binding.dart';
 import 'package:squeeze/app/modules/map/views/map_view.dart';
 import 'package:squeeze/app/modules/profile/bindings/profile_binding.dart';
 import 'package:squeeze/app/modules/profile/views/profile_view.dart';
+import 'package:squeeze/app/modules/register/bindings/register_binding.dart';
+import 'package:squeeze/app/modules/register/views/register_view.dart';
 import 'package:squeeze/app/modules/splash/bindings/splash_binding.dart';
 import 'package:squeeze/app/modules/splash/views/splash_view.dart';
 
@@ -54,6 +56,11 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.REGISTER,
+      page: () => RegisterView(),
+      binding: RegisterBinding(),
     ),
   ];
 }

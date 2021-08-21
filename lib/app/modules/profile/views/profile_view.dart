@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:squeeze/app/core/logger/logger.dart';
+import 'package:squeeze/app/core/sessions/sessions.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:squeeze/app/widgets/custom_appbar.dart';
 import 'package:squeeze/app/widgets/custom_button.dart';
@@ -30,11 +32,26 @@ class ProfileView extends GetView<ProfileController> {
                 children: [
                   CTitleTopBar(title: LocaleKeys.profile.tr),
                   SizedBox(height: 20),
-                  CTextField(hint: "First Name"),
+                  CTextField(
+                    hint: "First Name",
+                    controller: TextEditingController(
+                      text: Sessions.read("first", def: ""),
+                    ),
+                  ),
                   SizedBox(height: 15),
-                  CTextField(hint: "Last Name"),
+                  CTextField(
+                    hint: "Last Name",
+                    controller: TextEditingController(
+                      text: Sessions.read("last", def: ""),
+                    ),
+                  ),
                   SizedBox(height: 15),
-                  CTextField(hint: "Email Address"),
+                  CTextField(
+                    hint: "Email Address",
+                    controller: TextEditingController(
+                      text: Sessions.read("email", def: ""),
+                    ),
+                  ),
                   SizedBox(height: 15),
                   buildPhoneNumber(),
                 ],
@@ -64,20 +81,23 @@ class ProfileView extends GetView<ProfileController> {
   CTextField buildPhoneNumber() {
     return CTextField(
       hint: "Phone Number",
-      leftWidget: Row(
-        children: [
-          CText(
-            text: "+971",
-            color: Colors.grey[400],
-            // fontWeight: FontWeight.w500,
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 7),
-            width: 0.8,
-            height: 26,
-            color: Colors.grey[300],
-          )
-        ],
+      controller: TextEditingController(
+        text: Sessions.read("phoneNumber", def: ""),
+      ),
+      leftWidget: Container(
+        margin: EdgeInsets.only(left: 10),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CText(text: "+971", color: Colors.grey[400]),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 7),
+              width: 0.8,
+              height: 28,
+              color: Colors.grey[300],
+            )
+          ],
+        ),
       ),
     );
   }

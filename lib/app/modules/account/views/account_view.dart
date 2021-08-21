@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:squeeze/app/core/constant/assets_const.dart';
+import 'package:squeeze/app/core/sessions/sessions.dart';
+import 'package:squeeze/app/data/providers/logout_provider.dart';
 import 'package:squeeze/app/routes/app_pages.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:squeeze/app/widgets/custom_appbar.dart';
@@ -81,7 +83,9 @@ class AccountView extends GetView<AccountController> {
           fontSize: 16.sp,
           color: primaryColor,
         ),
-        onTap: () {},
+        onTap: () {
+          Get.toNamed(Routes.REGISTER);
+        },
       ),
     );
   }
@@ -125,11 +129,12 @@ class AccountView extends GetView<AccountController> {
             buildItem(LocaleKeys.help.tr, IC_QUESTION),
             Visibility(
               visible: AppController.to.isAuth,
-              child: buildItem(
-                LocaleKeys.logout.tr,
-                IC_LOGOUT,
-                withRotate: true,
-              ),
+              child: buildItem(LocaleKeys.logout.tr, IC_LOGOUT, onTap: () {
+                LogoutProvider.logOut();
+                AppController.to.isAuth = false;
+                Get.appUpdate();
+                Get.back();
+              }),
             ),
           ],
         ),
@@ -137,7 +142,7 @@ class AccountView extends GetView<AccountController> {
     );
   }
 
-  Widget buildItem(title, icon, {onTap, withRotate = false}) {
+  Widget buildItem(title, icon, {onTap}) {
     return CButton(
       onTap: () {
         if (onTap != null) onTap();
@@ -149,10 +154,7 @@ class AccountView extends GetView<AccountController> {
             Container(
               height: 16.w,
               width: 16.w,
-              child: RotatedBox(
-                quarterTurns: withRotate ? 190 : 0,
-                child: SvgPicture.asset(icon),
-              ),
+              child: SvgPicture.asset(icon),
             ),
             SizedBox(width: 14),
             CText(
@@ -176,7 +178,8 @@ class AccountView extends GetView<AccountController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CText(
-              text: LocaleKeys.good_morning.trArgs(["AhmadDar"]),
+              text: LocaleKeys.good_morning
+                  .trArgs([Sessions.read("firstName", def: "AhmadDar")]),
               fontSize: 18.sp,
               height: 1.1,
               color: secondaryColor,

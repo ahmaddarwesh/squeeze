@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttericon/entypo_icons.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:get/get.dart';
+import 'package:squeeze/app/core/constant/assets_const.dart';
 import 'package:squeeze/app/routes/app_pages.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:squeeze/app/widgets/custom_appbar.dart';
@@ -99,31 +100,19 @@ class HomeView extends GetView<HomeController> {
     return CAppBar(
       title: Container(
         constraints: BoxConstraints(
-          maxWidth: Get.width * .55,
+          maxWidth: Get.width * .70,
         ),
         child: CButton(
           onTap: () async {
             await Get.toNamed(Routes.MAP);
           },
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Flexible(
-                child: CText(
-                  textAlign: TextAlign.center,
-                  text: 'Beirut, Jouneh, Bikaa',
-                  overflow: TextOverflow.ellipsis,
-                  color: black,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 17.sp,
-                ),
-              ),
-              Icon(
-                Entypo.down_open,
-                color: Colors.grey[600],
-                size: 18,
-              )
-            ],
+          child: CText(
+            textAlign: TextAlign.center,
+            text: 'Jumeirah Beach Residence',
+            overflow: TextOverflow.ellipsis,
+            color: black,
+            fontWeight: FontWeight.w600,
+            fontSize: 15.sp,
           ),
         ),
       ),
@@ -133,9 +122,10 @@ class HomeView extends GetView<HomeController> {
             Get.toNamed(Routes.ACCOUNT);
           },
           padding: EdgeInsets.only(right: 20),
-          child: Icon(
-            FontAwesome5.user_circle,
-            color: Colors.grey,
+          child: Container(
+            width: 18,
+            height: 18,
+            child: SvgPicture.asset(IC_MENU),
           ),
         ),
       ],
