@@ -1,14 +1,31 @@
-<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 52" width="50" height="52">
-	<title>Menu</title>
-	<defs>
-		<image  width="50" height="52" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA0CAMAAAD/uJueAAAAAXNSR0IB2cksfwAAAJZQTFRFAAAAMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExO0MbogAAADJ0Uk5TADjLzP/w4DSWzv37B50DtW7+6a8cOdIFW3pacGCcpoJ0pJggXfRcZmloTpsY+TuzKUhqsyiNAAABM0lEQVR4nO2VaXOCQAyGAwQ8qiie9ag9Viqn4P//c82ubaV0kdBpGT/0/RCYTJ4JybuzABRlmKYBJelyBVmIJidXkI3ocHJtIZ1uz1HqI945JV1yvW7nHRgMka3hQBLuiE8gjlxCxurVVvIQ+3ZJl5wqHFOTCT2nM874symVTlyY02Ox5G1suaDiOdxTXHGXvKLiNWwobj9SdQfmXPwFMSzr+7Es5DRIndpGHrZM7RTy2OS4SD3Bc1Pk5Sdd5Cy7DVPykN24L60iYl/l+l7oEeFXm+ELLfJ6zcD1b3UBcahy/VAxS0tLvlnk3/2/WnJAMWyGRBRjLhJTcQQJ/XHTI484poheApARmcZh/bUfxkRgRmh+xQ6NQblsd2rA+KfzJ+aZxwO8LP+cK4mC+ms/iBJV/AZIdEQGUAgJnAAAAABJRU5ErkJggg=="/>
-	</defs>
-	<style>
-		tspan { white-space:pre }
-	</style>
-	<g id="Menu">
-		<g id="My Booking">
-			<use id="My Booking Icon" href="#img1" x="0" y="0" />
-		</g>
-	</g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="52" viewBox="0 0 50 52">
+  <metadata><?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c142 79.160924, 2017/07/13-01:06:39        ">
+   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description rdf:about=""/>
+   </rdf:RDF>
+</x:xmpmeta>
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                           
+<?xpacket end="w"?></metadata>
+<image id="My_Booking_Icon" data-name="My Booking Icon" width="50" height="52" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAA0CAQAAABib6MnAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQflCBYRJQA6SHqzAAACL0lEQVRYw+2Yz2sTQRiGn92EtFiwIFpKVYjSi9jLR5sQtCJ48FBUPJQePbQ3a/8ZBQ8einixx6JBSg9e/EFpGuZQIZciEdogKkGRFNNa18vELDjJJNvZHkLfy0wm737Pzrd5BzbQUpKTghQkh0Wd+swXb0gggRQO7/PbXD0KwBnr3Vh9vrWEAx0JxGtMZIJZcpwKfXceH/jNjqWGyVdljUW1EYJIH4+ZjWELi9xXdfBAErxgKqZOveKOOkgC8yHEj5DhJB7wh5+WQibfoB6nmOehJwkqDAGwzILabvrkO4PAJ5VuzzD55ByPuAvAF0Z8shqxyUwYcTipbWbYBGCIrM9Fvb6k9l0hANQ+S3p6wf+X1Mp/vi0AvlrrtfLt6jHVLowPKFJkwQqx+pJtNrzGREeNsfp65+xqtmtSXNfONiGNI3GOuZg2crqZk/g06vMxdshWkqqePmfdcfHr+vT61nzwq+qpW4agIT2Uk96BtDggJc01El3WOuCNKncMkTQfGIhwyzUZM2HM7ZqMhIABrpiWzZC31CJBarw3LRvbpcoyxk1OdInYZbWLZwKqzJNIezGqd3LSO5DjxJt1nHgXOqKc1PWsP05I4+173Hnty3qsejJMBQ/Y44Z6544gV3lNCggY8UBecguAPZ5R5JcDQj/j3CMFQF7d9kAuUYgYPrtqZFTJB1ViOmL47IhpVdI/YbVChjyBU0BAnoxagdC/RCDDZDlLnwNAnR3W1efGx79ekKWNcoSjcAAAAABJRU5ErkJggg=="/>
 </svg>

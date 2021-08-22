@@ -17,19 +17,26 @@ class AppController extends GetxController {
 
   var isEnglish = true;
   var languageBox = GetStorage("Squeeze");
-  bool isAuth = false;
+  late bool isAuth;
 
   Future changeLanguage({String? locale}) async {
     if (locale == null) {
       locale = isEnglish ? AR : EN;
     }
-    await showLoading(duration: 700.milliseconds);
+    await showLoading(duration: 500.milliseconds);
     Get.updateLocale(Locale(locale));
     Sessions.write(LANGUAGE, locale);
   }
 
+  changeIsAuth(isAuth) {
+    Sessions.write(IS_AUTH, isAuth);
+    this.isAuth = isAuth;
+    update();
+  }
+
   @override
   void onInit() {
+    isAuth = Sessions.read(IS_AUTH, def: false);
     changeByLanguage();
     languageBox.listenKey(LANGUAGE, (value) {
       isEnglish = value != AR;

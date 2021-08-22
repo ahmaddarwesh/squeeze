@@ -39,7 +39,7 @@ dev_dependencies:
 
 flutter_native_splash:
   image: assets/images/squeeze.png
-  color: "# dffe02"
+  color: "#dffe02"
   android_disable_fullscreen: true
   android: true
   ios: true

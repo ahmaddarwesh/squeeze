@@ -11,8 +11,10 @@ class VerificationCodeProvider {
    ''';
 
   static Future<QueryResult> verify(String input) async {
+    var client = await Client().getClient();
     var mutationOptions = MutationOptions(
-        document: gql(document), variables: {"verifyOtpOtPinCode": "123123"});
-    return await Client().getClient().value.mutate(mutationOptions);
+        document: gql(document),
+        variables: {"verifyOtpOtPinCode": input.toString()});
+    return await client.value.mutate(mutationOptions);
   }
 }

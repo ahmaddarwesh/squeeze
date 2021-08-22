@@ -16,14 +16,19 @@ void main() async {
   await initHiveForFlutter();
   await GetStorage.init("Squeeze");
   Get.lazyPut(() => AppController(), fenix: true);
-  runApp(MyApp());
+  var client = await Client().getClient();
+  runApp(MyApp(client: client));
 }
 
 class MyApp extends GetView<AppController> {
+  final client;
+
+  MyApp({this.client});
+
   @override
   Widget build(BuildContext context) {
     return GraphQLProvider(
-      client: Client().getClient(),
+      client: client,
       child: ScreenUtilInit(
         designSize: Size(360, 690),
         builder: () {

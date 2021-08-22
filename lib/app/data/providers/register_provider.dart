@@ -13,8 +13,11 @@ class RegisterProvider {
    ''';
 
   static Future<QueryResult> register(RegisterInput input) async {
-    var mutationOptions =
-        MutationOptions(document: gql(document), variables: input.toJson());
-    return await Client().getClient().value.mutate(mutationOptions);
+    var client = await Client().getClient();
+    var mutationOptions = MutationOptions(
+      document: gql(document),
+      variables: input.toJson(),
+    );
+    return await client.value.mutate(mutationOptions);
   }
 }

@@ -8,6 +8,7 @@ import 'package:squeeze/app/core/sessions/sessions.dart';
 import 'package:squeeze/app/data/models/register_model.dart';
 import 'package:squeeze/app/data/providers/logout_provider.dart';
 import 'package:squeeze/app/data/providers/register_provider.dart';
+import 'package:squeeze/app/data/providers/verificarion_code_provider.dart';
 import 'package:squeeze/app/routes/app_pages.dart';
 import 'package:squeeze/app_controller.dart';
 
@@ -56,21 +57,20 @@ class RegisterController extends GetxController {
 
   verificationCode() {
     if (pinCodeController.text.isNotEmpty) {
-      AppController.to.isAuth = true;
-      Get.appUpdate();
-      Get.close(3);
-
-      // showLoading();
-      // VerificationCodeProvider.verify(pinCodeController.text).then((value) {
-      //   hideLoading();
-      //   if (!value.hasException) {
-      //     l(info: value.data);
-      //   } else {
-      //     l(error: value.exception!.linkException);
-      //     var error = value.exception!.graphqlErrors.first.message;
-      //     showInfo(text: error, title: "Error");
-      //   }
-      // });
+      showLoading();
+      VerificationCodeProvider.verify(pinCodeController.text)
+          .then((value) async {
+        hideLoading();
+        if (!value.hasException) {
+          Get.close(3);
+          await 100.milliseconds.delay();
+          AppController.to.changeIsAuth(true);
+        } else {
+          l(error: value.exception);
+          var error = value.exception!.graphqlErrors.first.message;
+          showInfo(text: error, title: "Error");
+        }
+      });
     }
   }
 

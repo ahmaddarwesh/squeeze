@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:squeeze/app/core/constant/assets_const.dart';
+import 'package:squeeze/app/core/functions/dialogs.dart';
 import 'package:squeeze/app/core/sessions/sessions.dart';
 import 'package:squeeze/app/data/providers/logout_provider.dart';
 import 'package:squeeze/app/routes/app_pages.dart';
@@ -10,6 +11,7 @@ import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:squeeze/app/widgets/custom_appbar.dart';
 import 'package:squeeze/app/widgets/custom_button.dart';
 import 'package:squeeze/app/widgets/custom_text.dart';
+import 'package:squeeze/app/widgets/custom_title_top_bar.dart';
 import 'package:squeeze/app/widgets/find_the_best.dart';
 import 'package:squeeze/app_controller.dart';
 import 'package:squeeze/generated/locales.g.dart';
@@ -29,32 +31,49 @@ class AccountView extends GetView<AccountController> {
               Column(
                 crossAxisAlignment: AppController.to.crossAxisAlignment,
                 children: [
-                  buildWelcome(),
-                  SizedBox(height: 59),
-                  Divider(),
+                  CTitleTopBar(
+                    title: LocaleKeys.welcome.tr,
+                    alignment: AppController.to.alignment,
+                  ),
                   buildFindTheBest(),
-                  SizedBox(height: 60),
+                  SizedBox(height: 30),
                   buildLoginSignup(),
-                  SizedBox(height: 70),
+                  SizedBox(height: 30),
                 ],
               )
             else
               Column(
                 children: [
-                  Directionality(
-                    textDirection: AppController.to.textDirection,
-                    child: Column(
-                      children: [
-                        buildGoodMorning(),
-                        Divider(),
-                      ],
-                    ),
+                  CTitleTopBar(
+                    title: LocaleKeys.good_morning
+                        .trArgs([Sessions.read("first", def: "AhmadDar")]),
+                    alignment: AppController.to.alignment,
                   ),
                   buildAuthOptions(),
-                  SizedBox(height: 100),
                 ],
               ),
             buildBottomSection(),
+            SizedBox(height: 100),
+            Directionality(
+              textDirection: AppController.to.textDirection,
+              child: Visibility(
+                visible: AppController.to.isAuth,
+                child: buildItem(LocaleKeys.logout.tr, IC_LOGOUT, onTap: () {
+                  showInfo(
+                    text: "Logout from your account?",
+                    title: "Logout",
+                    with2Buttons: true,
+                    mainOnTap: () {
+                      LogoutProvider.logOut();
+                      AppController.to.changeIsAuth(false);
+                      Get.close(2);
+                    },
+                    mainText: "Logout",
+                    cancelText: "Cancel",
+                  );
+                }),
+              ),
+            ),
           ],
         ),
       ),
@@ -75,7 +94,7 @@ class AccountView extends GetView<AccountController> {
   Align buildLoginSignup() {
     return Align(
       child: CButton(
-        height: 38,
+        height: 48,
         color: secondaryColor,
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: CText(
@@ -92,7 +111,6 @@ class AccountView extends GetView<AccountController> {
 
   Container buildFindTheBest() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 20),
       child: FindTheBest(
         fontSize: 30.sp,
       ),
@@ -127,15 +145,6 @@ class AccountView extends GetView<AccountController> {
             }),
             buildItem(LocaleKeys.about_us.tr, IC_INFO),
             buildItem(LocaleKeys.help.tr, IC_QUESTION),
-            Visibility(
-              visible: AppController.to.isAuth,
-              child: buildItem(LocaleKeys.logout.tr, IC_LOGOUT, onTap: () {
-                LogoutProvider.logOut();
-                AppController.to.isAuth = false;
-                Get.appUpdate();
-                Get.back();
-              }),
-            ),
           ],
         ),
       ),
@@ -176,33 +185,8 @@ class AccountView extends GetView<AccountController> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CText(
-              text: LocaleKeys.good_morning
-                  .trArgs([Sessions.read("firstName", def: "AhmadDar")]),
-              fontSize: 18.sp,
-              height: 1.1,
-              color: secondaryColor,
-              fontWeight: FontWeight.w700,
-            ),
-            SvgPicture.asset(
-              IC_MOON,
-              width: 40,
-              height: 40,
-            ),
-          ],
+          children: [],
         ),
-        SizedBox(height: 7),
-        CText(
-          text: LocaleKeys.find_the_best.tr +
-              " " +
-              LocaleKeys.services.tr +
-              " " +
-              LocaleKeys.that_matter_to_you.tr.replaceAll('\n', "") +
-              ".",
-          maxLines: 1,
-          fontSize: 15.sp,
-        )
       ],
     );
   }
@@ -212,6 +196,7 @@ class AccountView extends GetView<AccountController> {
       child: Directionality(
         textDirection: AppController.to.textDirection,
         child: ListView(
+          padding: EdgeInsets.zero,
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           children: [

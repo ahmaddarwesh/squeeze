@@ -31,5 +31,7 @@
   "my_booking": "الحجز",
   "addresses": "عناويني",
   "update": "تحديث",
-  "logout": "تسجيل الخروج"
+  "logout": "تسجيل الخروج",
+  "select_language": "إختر لغة",
+  "edit_profile": "تعديل الملف الشخصي"
  }

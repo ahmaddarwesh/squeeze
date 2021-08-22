@@ -30,7 +30,7 @@ class ProfileView extends GetView<ProfileController> {
             children: [
               Column(
                 children: [
-                  CTitleTopBar(title: LocaleKeys.profile.tr),
+                  CTitleTopBar(title: LocaleKeys.edit_profile.tr),
                   SizedBox(height: 20),
                   CTextField(
                     hint: "First Name",
@@ -68,7 +68,7 @@ class ProfileView extends GetView<ProfileController> {
                 ),
                 color: secondaryColor,
                 width: Get.width,
-                height: 40,
+                height: 45,
                 onTap: () {},
               ),
             ],

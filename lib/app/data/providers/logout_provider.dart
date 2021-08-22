@@ -9,7 +9,8 @@ class LogoutProvider {
   ''';
 
   static Future<QueryResult> logOut() async {
+    var client = await Client().getClient();
     var mutationOptions = MutationOptions(document: gql(document));
-    return await Client().getClient().value.mutate(mutationOptions);
+    return await client.value.mutate(mutationOptions);
   }
 }

@@ -59,7 +59,7 @@ class HomeView extends GetView<HomeController> {
       borderRadius: BorderRadius.circular(20),
       child: Container(
         width: Get.width,
-        height: 140,
+        height: 150,
         child: Container(
           decoration: BoxDecoration(
             color: primaryColor,

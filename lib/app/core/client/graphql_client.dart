@@ -9,25 +9,28 @@ import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:squeeze/app/core/constant/app_constants.dart';
 import 'package:squeeze/app/core/logger/logger.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:cookie_jar/src/file_storage.dart' as store;
 
 class Client {
   Dio dio = Dio();
   Link? link;
 
-  ValueNotifier<GraphQLClient> getClient() {
-    var cookieJar = CookieJar();
+  Future<ValueNotifier<GraphQLClient>> getClient() async {
+    final directory = await getApplicationSupportDirectory();
+    final cookieJar =
+        PersistCookieJar(storage: store.FileStorage(directory.path));
+    // var cookieJar = CookieJar(ignoreExpires: true);
     dio.interceptors.add(CookieManager(cookieJar));
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) async {
-        var data = await cookieJar.loadForRequest(Uri.parse(GQL_LINK));
         l(verbose: "Request: " + options.data.toString());
-
         return handler.next(options);
       },
-      onResponse: (response, handler) {
+      onResponse: (response, handler) async {
         return handler.next(response);
       },
-      onError: (DioError e, handler) {
+      onError: (DioError e, handler) async {
         return handler.next(e);
       },
     ));

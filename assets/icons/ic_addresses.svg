@@ -1,14 +1,31 @@
-<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50" height="50">
-	<title>Menu</title>
-	<defs>
-		<image  width="50" height="50" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAAXNSR0IB2cksfwAAAORQTFRFAAAAMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExrfufuAAAAEx0Uk5TAA9GXkC2/f8MnifVU/P0pXQEjKkTGMD6bjvm5Tpv+78XqIoD8lLUJqYLMSrvBm1X2nHgVJFmc2BwIF1cWmF3RxL+FrqvAbC5Q6IKwUHtdZQAAAGiSURBVHic7ZTXcsIwEEVFNb333nsvAZMEmwABzP//T3ZlQsASWA+ZyUvug7y72mOtrmdMCFcWq81mtfD3uLI7nBLI6bALAi63dJXbJUJ4vNKNvB5zwufHzkAwFAoGMPL7TIBwhL47GsMkFqVJJPyMiCewJ5n6zlNJzBPxx0Q6gx3Z3E8ll8VKJv2IyBdwv1i6rZWKWCvkuYCrTCevVO/L1Qotlzlu697W6uxOvcZ3W/e20eSd32xw3L5422pzRybtFuO20VtWRrc7WaO3rHS3sx096/ZYb1npbve6GPe9PG9Z6W57+xAO8BpDMwA1xAsNIBjBcyxCEDKG1hGYDo+J6VSX2SbQ3CRTWGdiBCEzaJ6S+WU+Ib1A84Is6Sqo5T/yj/wJIq8Wd1rJZogckAwKyCbIq5GQpLffP4XI8+Wd5uxd3mFdizq2pogCa1AUwd+5QtQNjPshRpTgohuVkC2Qu70Isf+E1gMER7RlJ3BOCQnpiOGJWhlcL59q3aL2nyitndnP90hnTT9RO4kSJ+065nG7Me/fHI53d1OVhYkU9dL6BbOXT4AC97SiAAAAAElFTkSuQmCC"/>
-	</defs>
-	<style>
-		tspan { white-space:pre }
-	</style>
-	<g id="Menu">
-		<g id="Addresses">
-			<use id="Addresses Icon" href="#img1" x="0" y="0" />
-		</g>
-	</g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 50 50">
+  <metadata><?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c142 79.160924, 2017/07/13-01:06:39        ">
+   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <rdf:Description rdf:about=""/>
+   </rdf:RDF>
+</x:xmpmeta>
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                           
+<?xpacket end="w"?></metadata>
+<image id="Addresses_Icon" data-name="Addresses Icon" width="50" height="50" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAQAAAC0NkA6AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQflCBYRKzJsHAa9AAADDElEQVRYw+2Yy0tUURzHP3PHjJqJxB562/QCo5dxggi0FyQ9IDKMRIjMtoG2KLI/obQgXAS2yTJIGzIGgh5WTA+FavGDKKkoqBZ6eyiFjdDDpoVnbj7u9Y4zdznfzT3f87tzPnN+8zvMOSfAFKRms55CwOKJfE/9c4GUAVs4znYMbf9ymwaJ+QhRYZo45BC4QJ388AWiltHBCpdgDxXyOmOI2ksLYW3iRBFAUU5I9/2gRq5lAFE5nOSoba9yWPp1ZA7nqLQjZzghf9KCqELa2KzNb45J07h4HaeZps0DqsSaMkSVEsHUppd90u3wTgkRFmjTxz7pch7LcO5WR4jZiBhrnRAg3awlpo1JTB1xHi3oAAiblzhm4xs5KINu87Xi5mVmUKq/8A5zuXnL+uWZrjEFO0iNdOApVUELs7RxKOpxkDEF+5IKeeONAFBFdLBSmwlFPSpdKsds4Cy52l5ht3u9TEhbv3mRxawGIJdKc5Z53/o7YSZeBZvSfFyKWkOU4oZdjC4FmxJmdFH3skvEhqgVdJGnQzGq5FN6CABVQBtbtPlGqfSAASqXiI1opCwTBMgnymjUJo+IyoUgmIepBuA3++WslcgEAWAlrE7zFeUEgXl8sZ4aQK2O1kt7pgB7Pu3U62YtBFQRI0vnA0tl2C8IqCDvWAjAMoNi3Rv1EwEyTFQ3iw3ydfOtnwgAPupn2GCmbg6mO5ar7MwYmYySqrKQLCQLyUJ8Vo7XC2oRG532mbaGeSTvM4KoRbywTyJuiqtVk2O80rXBEwEhSiZ/wQvymLgnJI7HLs0jXfJerWKb/cfmpCHueP8myfN4gRuG855zcdb0/+nq1a3iNIdy1xr97AuofL4SAOIskc/+EVQB7wgBCeYaMsBdAEI0q5TvJzwRAZp1XXbKgAGc0pE9dKj5Ps3iOuXaNCR39Zc4oLviRHnOzwwI01nDbnt1tUp1EjKTm2zyK1Wj9JCdMqQXowyxk1bfEa0jiDEHU7WVespSv5yaRAk6aZB7STv+9JvPOvuSIF318UwGRnf8A4bF3UGryS4MAAAAAElFTkSuQmCC"/>
 </svg>

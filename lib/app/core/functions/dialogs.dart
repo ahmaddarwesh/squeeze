@@ -36,7 +36,14 @@ hideLoading() {
   }
 }
 
-showInfo({text, title}) {
+showInfo(
+    {text,
+    title,
+    with2Buttons = false,
+    mainText,
+    cancelText,
+    mainOnTap,
+    cancelOnTap}) {
   Get.dialog(
     Align(
       child: Container(
@@ -61,16 +68,47 @@ showInfo({text, title}) {
                 CText(
                   text: text,
                 ),
-                CButton(
-                  width: Get.width,
-                  child: CText(
-                    text: "Ok",
-                    color: primaryColor,
-                  ),
-                  onTap: () {
-                    Get.back();
-                  },
-                  color: secondaryColor,
+                Row(
+                  children: [
+                    Expanded(
+                      child: CButton(
+                        width: Get.width,
+                        child: CText(
+                          text: mainText ?? "Ok",
+                          color: primaryColor,
+                          fontSize: 12,
+                        ),
+                        onTap: () {
+                          if (mainOnTap != null)
+                            mainOnTap();
+                          else
+                            Get.back();
+                        },
+                        color: secondaryColor,
+                      ),
+                    ),
+                    SizedBox(width: with2Buttons ? 10 : 0),
+                    Visibility(
+                      visible: with2Buttons,
+                      child: Expanded(
+                        child: CButton(
+                          width: Get.width,
+                          child: CText(
+                            text: cancelText ?? "Cancel",
+                            color: primaryColor,
+                            fontSize: 12,
+                          ),
+                          onTap: () {
+                            if (cancelOnTap != null)
+                              cancelOnTap();
+                            else
+                              Get.back();
+                          },
+                          color: secondaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
                 )
               ],
             ),

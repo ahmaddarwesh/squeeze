@@ -26,7 +26,7 @@ class ChangeLanguageView extends GetView<ChangeLanguageController> {
             children: [
               Column(
                 children: [
-                  CTitleTopBar(title: LocaleKeys.language.tr),
+                  CTitleTopBar(title: LocaleKeys.select_language.tr),
                   SizedBox(height: 20),
                   buildEnglish(),
                   SizedBox(height: 12),
@@ -35,7 +35,7 @@ class ChangeLanguageView extends GetView<ChangeLanguageController> {
               ),
               CButton(
                 radius: 12,
-                margin: EdgeInsets.only(bottom: 100),
+                margin: EdgeInsets.only(bottom: 220),
                 child: CText(
                   text: LocaleKeys.update.tr,
                   fontSize: 13.sp,
@@ -44,7 +44,7 @@ class ChangeLanguageView extends GetView<ChangeLanguageController> {
                 ),
                 color: secondaryColor,
                 width: Get.width,
-                height: 40,
+                height: 45,
                 onTap: () {
                   controller.onUpdate();
                 },
@@ -62,7 +62,7 @@ class ChangeLanguageView extends GetView<ChangeLanguageController> {
       width: Get.width,
       height: 45,
       border: !controller.tempIsEnglish
-          ? Border.all(width: 1, color: Colors.grey)
+          ? Border.all(width: 1, color: Colors.grey[300]!)
           : null,
       color: controller.tempIsEnglish ? secondaryColor : null,
       onTap: () {
@@ -93,7 +93,7 @@ class ChangeLanguageView extends GetView<ChangeLanguageController> {
       height: 45,
       color: !controller.tempIsEnglish ? secondaryColor : null,
       border: controller.tempIsEnglish
-          ? Border.all(width: 1, color: Colors.grey)
+          ? Border.all(width: 1, color: Colors.grey[300]!)
           : null,
       onTap: () {
         if (!controller.tempIsEnglish) {

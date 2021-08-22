@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -62,12 +64,13 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                     color: secondaryColor,
                     width: Get.width,
-                    height: 40,
+                    height: 45,
                     onTap: () {
                       controller.register(onSuccess: () {
                         Get.focusScope!.unfocus();
                         showBarModalBottomSheet(
                           closeProgressThreshold: 20,
+                          enableDrag: false,
                           context: context,
                           builder: (_) {
                             return buildVerificationCode();
@@ -147,17 +150,31 @@ class RegisterView extends GetView<RegisterController> {
       backgroundColor: Colors.white,
       body: Container(
         height: Get.height * .7,
-        margin: EdgeInsets.only(top: 50),
+        margin: EdgeInsets.only(top: 20),
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: CButton(
+                onTap: () {
+                  Get.back();
+                },
+                child: Icon(
+                  FontAwesome.left_open,
+                  size: 20,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
             CTitleTopBar(
               title: "Verification code",
             ),
             SizedBox(height: 20),
             CText(
               text:
-                  "verification code has sent to your phone number, please enter the six digit code",
+                  "Please enter the six digit code has been sent to your phone number by SMS",
               fontSize: 12.sp,
               textAlign: TextAlign.center,
             ),
@@ -169,6 +186,7 @@ class RegisterView extends GetView<RegisterController> {
               onTap: () {
                 controller.verificationCode();
               },
+              height: 45,
               color: secondaryColor,
               width: Get.width,
             ),

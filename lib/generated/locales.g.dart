@@ -44,6 +44,8 @@ class LocaleKeys {
   static const addresses = 'addresses';
   static const update = 'update';
   static const logout = 'logout';
+  static const select_language = 'select_language';
+  static const edit_profile = 'edit_profile';
 }
 
 class Locales {
@@ -81,6 +83,8 @@ class Locales {
     'addresses': 'عناويني',
     'update': 'تحديث',
     'logout': 'تسجيل الخروج',
+    'select_language': 'إختر لغة',
+    'edit_profile': 'تعديل الملف الشخصي',
   };
   static const en_US = {
     'language': 'Language',
@@ -116,5 +120,7 @@ class Locales {
     'addresses': 'My Addresses',
     'update': 'Update',
     'logout': 'Logout',
+    'select_language': 'Select Language',
+    'edit_profile': 'Edit Profile',
   };
 }
