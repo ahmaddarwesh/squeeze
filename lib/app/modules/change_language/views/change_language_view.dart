@@ -18,38 +18,46 @@ class ChangeLanguageView extends GetView<ChangeLanguageController> {
     return GetBuilder<ChangeLanguageController>(
       builder: (_) => Scaffold(
         backgroundColor: white,
-        appBar: CAppBar(title: Container()),
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  CTitleTopBar(title: LocaleKeys.select_language.tr),
-                  SizedBox(height: 20),
-                  buildEnglish(),
-                  SizedBox(height: 12),
-                  buildArabic(),
-                ],
-              ),
-              CButton(
-                radius: 12,
-                margin: EdgeInsets.only(bottom: 220),
-                child: CText(
-                  text: LocaleKeys.update.tr,
-                  fontSize: 13.sp,
-                  color: primaryColor,
-                  fontWeight: FontWeight.w600,
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            width: Get.width,
+            height: Get.height,
+            child: Column(
+              children: [
+                Flexible(
+                  flex: 6,
+                  child: Column(
+                    children: [
+                      CTitleTopBar(title: LocaleKeys.select_language.tr),
+                      SizedBox(height: 20),
+                      buildEnglish(),
+                      SizedBox(height: 12),
+                      buildArabic(),
+                    ],
+                  ),
                 ),
-                color: secondaryColor,
-                width: Get.width,
-                height: 45,
-                onTap: () {
-                  controller.onUpdate();
-                },
-              ),
-            ],
+                Flexible(
+                  flex: 3,
+                  child: CButton(
+                    radius: 12,
+                    margin: EdgeInsets.only(bottom: 220),
+                    child: CText(
+                      text: LocaleKeys.update.tr,
+                      fontSize: 13.sp,
+                      color: primaryColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    color: secondaryColor,
+                    width: Get.width,
+                    height: 45,
+                    onTap: () {
+                      controller.onUpdate();
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

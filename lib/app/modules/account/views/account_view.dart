@@ -8,13 +8,13 @@ import 'package:squeeze/app/core/sessions/sessions.dart';
 import 'package:squeeze/app/data/providers/logout_provider.dart';
 import 'package:squeeze/app/routes/app_pages.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
-import 'package:squeeze/app/widgets/custom_appbar.dart';
 import 'package:squeeze/app/widgets/custom_button.dart';
 import 'package:squeeze/app/widgets/custom_text.dart';
 import 'package:squeeze/app/widgets/custom_title_top_bar.dart';
 import 'package:squeeze/app/widgets/find_the_best.dart';
 import 'package:squeeze/app_controller.dart';
 import 'package:squeeze/generated/locales.g.dart';
+
 import '../controllers/account_controller.dart';
 
 class AccountView extends GetView<AccountController> {
@@ -22,59 +22,65 @@ class AccountView extends GetView<AccountController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,
-      appBar: CAppBar(title: Container()),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            if (!AppController.to.isAuth)
-              Column(
-                crossAxisAlignment: AppController.to.crossAxisAlignment,
-                children: [
-                  CTitleTopBar(
-                    title: LocaleKeys.welcome.tr,
-                    alignment: AppController.to.alignment,
-                  ),
-                  buildFindTheBest(),
-                  SizedBox(height: 30),
-                  buildLoginSignup(),
-                  SizedBox(height: 30),
-                ],
-              )
-            else
-              Column(
-                children: [
-                  CTitleTopBar(
-                    title: LocaleKeys.good_morning
-                        .trArgs([Sessions.read("first", def: "AhmadDar")]),
-                    alignment: AppController.to.alignment,
-                  ),
-                  buildAuthOptions(),
-                ],
-              ),
-            buildBottomSection(),
-            SizedBox(height: 100),
-            Directionality(
-              textDirection: AppController.to.textDirection,
-              child: Visibility(
-                visible: AppController.to.isAuth,
-                child: buildItem(LocaleKeys.logout.tr, IC_LOGOUT, onTap: () {
-                  showInfo(
-                    text: "Logout from your account?",
-                    title: "Logout",
-                    with2Buttons: true,
-                    mainOnTap: () {
-                      LogoutProvider.logOut();
-                      AppController.to.changeIsAuth(false);
-                      Get.close(2);
-                    },
-                    mainText: "Logout",
-                    cancelText: "Cancel",
-                  );
-                }),
-              ),
+      body: Directionality(
+        textDirection: AppController.to.textDirection,
+        child: SingleChildScrollView(
+          child: Container(
+            height: Get.height,
+            width: Get.width,
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                !AppController.to.isAuth
+                    ? Flexible(
+                        flex: 95,
+                        child: Column(
+                          crossAxisAlignment: AppController.to.crossAxisAlignment,
+                          children: [
+                            CTitleTopBar(
+                              title: LocaleKeys.welcome.tr,
+                              alignment: AppController.to.alignment,
+                            ),
+                            buildFindTheBest(),
+                            SizedBox(height: 30),
+                            buildLoginSignup(),
+                          ],
+                        ),
+                      )
+                    : Expanded(
+                        flex: 89,
+                        child: Column(
+                          children: [
+                            CTitleTopBar(
+                              title: LocaleKeys.good_morning
+                                  .trArgs([Sessions.read("first", def: "AhmadDar")]),
+                              alignment: AppController.to.alignment,
+                            ),
+                            buildAuthOptions(),
+                          ],
+                        ),
+                      ),
+                Flexible(flex: 95, child: buildBottomSection()),
+                Visibility(
+                  visible: AppController.to.isAuth,
+                  child: buildItem(LocaleKeys.logout.tr, IC_LOGOUT, onTap: () {
+                    showInfo(
+                      text: "Logout from your account?",
+                      title: "Logout",
+                      with2Buttons: true,
+                      mainOnTap: () {
+                        LogoutProvider.logOut();
+                        AppController.to.changeIsAuth(false);
+                        Get.close(2);
+                      },
+                      mainText: "Logout",
+                      cancelText: "Cancel",
+                    );
+                  }),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
       bottomNavigationBar: SafeArea(
@@ -134,19 +140,19 @@ class AccountView extends GetView<AccountController> {
 
   buildBottomSection() {
     return Container(
-      child: Directionality(
-        textDirection: AppController.to.textDirection,
-        child: ListView(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          children: [
-            buildItem(LocaleKeys.language.tr, IC_LANGUAGE, onTap: () {
-              Get.toNamed(Routes.CHANGE_LANGUAGE);
-            }),
-            buildItem(LocaleKeys.about_us.tr, IC_INFO),
-            buildItem(LocaleKeys.help.tr, IC_QUESTION),
-          ],
-        ),
+      child: ListView(
+        padding: EdgeInsets.zero,
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        children: [
+          buildItem(LocaleKeys.language.tr, IC_LANGUAGE, onTap: () {
+            Get.toNamed(Routes.CHANGE_LANGUAGE);
+          }),
+          buildItem(LocaleKeys.about_us.tr, IC_INFO),
+          buildItem(LocaleKeys.help.tr, IC_QUESTION, onTap: () {
+            AppController.to.changeIsAuth(!AppController.to.isAuth);
+          }),
+        ],
       ),
     );
   }

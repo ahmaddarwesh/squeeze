@@ -26,60 +26,68 @@ class RegisterView extends GetView<RegisterController> {
         },
         child: Scaffold(
           backgroundColor: white,
-          appBar: CAppBar(title: Container()),
-          body: Container(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: Form(
-              autovalidateMode: controller.startValidate
-                  ? AutovalidateMode.always
-                  : AutovalidateMode.disabled,
-              onChanged: () {
-                Get.appUpdate();
-              },
-              key: controller.formKey,
-              child: ListView(
-                children: [
-                  Column(
-                    children: [
-                      CTitleTopBar(title: "Sign Up"),
-                      SizedBox(height: 20),
-                      buildFirstName(),
-                      SizedBox(height: 13),
-                      buildLastName(),
-                      SizedBox(height: 13),
-                      buildEmail(),
-                      SizedBox(height: 13),
-                      buildPhoneNumber(),
-                    ],
-                  ),
-                  SizedBox(height: Get.height * .3),
-                  CButton(
-                    radius: 12,
-                    margin: EdgeInsets.only(bottom: 100),
-                    child: CText(
-                      text: "Sign Up",
-                      fontSize: 13.sp,
-                      color: primaryColor,
-                      fontWeight: FontWeight.w600,
+          body: SingleChildScrollView(
+            child: Container(
+              height: Get.height,
+              width: Get.width,
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Form(
+                autovalidateMode: controller.startValidate
+                    ? AutovalidateMode.always
+                    : AutovalidateMode.disabled,
+                onChanged: () {
+                  Get.appUpdate();
+                },
+                key: controller.formKey,
+                child: Column(
+                  children: [
+                    Flexible(
+                      flex: 6,
+                      child: Column(
+                        children: [
+                          CTitleTopBar(title: "Sign Up"),
+                          SizedBox(height: 20),
+                          buildFirstName(),
+                          SizedBox(height: 13),
+                          buildLastName(),
+                          SizedBox(height: 13),
+                          buildEmail(),
+                          SizedBox(height: 13),
+                          buildPhoneNumber(),
+                        ],
+                      ),
                     ),
-                    color: secondaryColor,
-                    width: Get.width,
-                    height: 45,
-                    onTap: () {
-                      controller.register(onSuccess: () {
-                        Get.focusScope!.unfocus();
-                        showBarModalBottomSheet(
-                          closeProgressThreshold: 20,
-                          enableDrag: false,
-                          context: context,
-                          builder: (_) {
-                            return buildVerificationCode();
-                          },
-                        );
-                      });
-                    },
-                  ),
-                ],
+                    Flexible(
+                      flex: 3,
+                      child: CButton(
+                        radius: 12,
+                        margin: EdgeInsets.only(bottom: 100),
+                        child: CText(
+                          text: "Sign Up",
+                          fontSize: 13.sp,
+                          color: primaryColor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        color: secondaryColor,
+                        width: Get.width,
+                        height: 45,
+                        onTap: () {
+                          controller.register(onSuccess: () {
+                            Get.focusScope!.unfocus();
+                            showBarModalBottomSheet(
+                              closeProgressThreshold: 20,
+                              enableDrag: false,
+                              context: context,
+                              builder: (_) {
+                                return buildVerificationCode();
+                              },
+                            );
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -167,7 +175,6 @@ class RegisterView extends GetView<RegisterController> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
             CTitleTopBar(
               title: "Verification code",
             ),

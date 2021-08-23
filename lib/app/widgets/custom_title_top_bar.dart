@@ -15,7 +15,10 @@ class CTitleTopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 70),
+      margin: EdgeInsets.only(
+        bottom: 70,
+        top: AppBar().preferredSize.height + 20,
+      ),
       alignment: alignment ?? Alignment.center,
       child: CText(
         height: 1,

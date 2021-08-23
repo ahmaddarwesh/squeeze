@@ -32,6 +32,7 @@ class AppController extends GetxController {
     Sessions.write(IS_AUTH, isAuth);
     this.isAuth = isAuth;
     update();
+    Get.appUpdate();
   }
 
   @override
@@ -47,14 +48,11 @@ class AppController extends GetxController {
 
   changeByLanguage() {
     isEnglish = Sessions.read(LANGUAGE, def: EN) != AR;
-    crossAxisAlignment =
-        isEnglish ? CrossAxisAlignment.start : CrossAxisAlignment.end;
+    crossAxisAlignment = isEnglish ? CrossAxisAlignment.start : CrossAxisAlignment.end;
     textDirection = isEnglish ? TextDirection.ltr : TextDirection.rtl;
     alignment = isEnglish ? Alignment.centerLeft : Alignment.centerRight;
     Themes.light.copyWith(
-      textTheme: isEnglish
-          ? GoogleFonts.poppinsTextTheme()
-          : GoogleFonts.almaraiTextTheme(),
+      textTheme: isEnglish ? GoogleFonts.poppinsTextTheme() : GoogleFonts.almaraiTextTheme(),
     );
   }
 }
