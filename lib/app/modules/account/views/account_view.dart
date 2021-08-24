@@ -26,58 +26,10 @@ class AccountView extends GetView<AccountController> {
         textDirection: AppController.to.textDirection,
         child: SingleChildScrollView(
           child: Container(
-            height: Get.height,
-            width: Get.width,
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                !AppController.to.isAuth
-                    ? Flexible(
-                        flex: 95,
-                        child: Column(
-                          crossAxisAlignment: AppController.to.crossAxisAlignment,
-                          children: [
-                            CTitleTopBar(
-                              title: LocaleKeys.welcome.tr,
-                              alignment: AppController.to.alignment,
-                            ),
-                            buildFindTheBest(),
-                            SizedBox(height: 30),
-                            buildLoginSignup(),
-                          ],
-                        ),
-                      )
-                    : Expanded(
-                        flex: 89,
-                        child: Column(
-                          children: [
-                            CTitleTopBar(
-                              title: LocaleKeys.good_morning
-                                  .trArgs([Sessions.read("first", def: "AhmadDar")]),
-                              alignment: AppController.to.alignment,
-                            ),
-                            buildAuthOptions(),
-                          ],
-                        ),
-                      ),
-                Flexible(flex: 95, child: buildBottomSection()),
-                Visibility(
-                  visible: AppController.to.isAuth,
-                  child: buildItem(LocaleKeys.logout.tr, IC_LOGOUT, onTap: () {
-                    showInfo(
-                      text: "Logout from your account?",
-                      title: "Logout",
-                      with2Buttons: true,
-                      mainOnTap: () {
-                        LogoutProvider.logOut();
-                        AppController.to.changeIsAuth(false);
-                        Get.close(2);
-                      },
-                      mainText: "Logout",
-                      cancelText: "Cancel",
-                    );
-                  }),
-                ),
+                !AppController.to.isAuth ? buildLoginItems() : buildAuthItems(),
               ],
             ),
           ),
@@ -94,6 +46,69 @@ class AccountView extends GetView<AccountController> {
           ),
         ),
       ),
+    );
+  }
+
+  Column buildLoginItems() {
+    return Column(
+      crossAxisAlignment: AppController.to.crossAxisAlignment,
+      children: [
+        CTitleTopBar(
+          title: LocaleKeys.welcome.tr,
+          alignment: AppController.to.alignment,
+        ),
+        buildFindTheBest(),
+        SizedBox(height: 30),
+        buildLoginSignup(),
+        SizedBox(height: 10),
+        buildBottomSection(),
+      ],
+    );
+  }
+
+  Column buildAuthItems() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          children: [
+            CTitleTopBar(
+              title: LocaleKeys.good_morning.trArgs(
+                [Sessions.read("first", def: "AhmadDar")],
+              ),
+              alignment: AppController.to.alignment,
+            ),
+            buildAuthOptions(),
+            buildBottomSection(),
+          ],
+        ),
+        Column(
+          children: [
+            buildLogout(),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget buildLogout() {
+    return buildItem(
+      LocaleKeys.logout.tr,
+      IC_LOGOUT,
+      onTap: () {
+        showInfo(
+          text: "Logout from your account?",
+          title: "Logout",
+          with2Buttons: true,
+          mainOnTap: () {
+            LogoutProvider.logOut();
+            AppController.to.changeIsAuth(false);
+            Get.close(2);
+          },
+          mainText: "Logout",
+          cancelText: "Cancel",
+        );
+      },
     );
   }
 

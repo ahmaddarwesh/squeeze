@@ -16,6 +16,8 @@ import 'package:squeeze/app/modules/register/bindings/register_binding.dart';
 import 'package:squeeze/app/modules/register/views/register_view.dart';
 import 'package:squeeze/app/modules/splash/bindings/splash_binding.dart';
 import 'package:squeeze/app/modules/splash/views/splash_view.dart';
+import 'package:squeeze/app/modules/steps/bindings/steps_binding.dart';
+import 'package:squeeze/app/modules/steps/views/steps_view.dart';
 
 part 'app_routes.dart';
 
@@ -61,6 +63,11 @@ class AppPages {
       name: _Paths.REGISTER,
       page: () => RegisterView(),
       binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: _Paths.STEPS,
+      page: () => StepsView(),
+      binding: StepsBinding(),
     ),
   ];
 }

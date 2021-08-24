@@ -5,7 +5,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttericon/entypo_icons.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:squeeze/app/core/constant/app_constants.dart';
 import 'package:squeeze/app/core/constant/assets_const.dart';
+import 'package:squeeze/app/core/logger/logger.dart';
+import 'package:squeeze/app/data/models/service_model.dart';
 import 'package:squeeze/app/routes/app_pages.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:squeeze/app/widgets/custom_appbar.dart';
@@ -144,31 +148,41 @@ class HomeView extends GetView<HomeController> {
             fontSize: 16.sp,
           ),
           SizedBox(height: 15),
-          GridView(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 7,
-              mainAxisSpacing: 7,
-            ),
-            children: [
-              buildItem(LocaleKeys.standard_cleaning.tr),
-              buildItem(LocaleKeys.deep_cleaning.tr),
-              buildItem(LocaleKeys.laundry.tr),
-              buildItem(LocaleKeys.carpet_sofa_cleaning.tr),
-              buildItem(LocaleKeys.car_wash.tr),
-              buildItem(LocaleKeys.maintenance.tr),
-            ],
+          GetBuilder<HomeController>(
+            builder: (_) => controller.services.isEmpty
+                ? Shimmer.fromColors(
+                    baseColor: Colors.grey[200]!,
+                    highlightColor: Colors.white,
+                    child: buildGridView(),
+                  )
+                : buildGridView(fake: false),
           )
         ],
       ),
     );
   }
 
-  buildItem(String title) {
+  GridView buildGridView({fake: true}) {
+    return GridView.builder(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 7,
+        mainAxisSpacing: 7,
+      ),
+      itemCount: fake ? 6 : controller.services.length,
+      itemBuilder: (BuildContext context, int index) {
+        return buildItem(fake ? null : controller.services[index]);
+      },
+    );
+  }
+
+  buildItem(Service? service) {
     return CButton(
-      onTap: () {},
+      onTap: () {
+        controller.onServiceTap(service);
+      },
       color: secondaryColor,
       child: Container(
         child: Stack(
@@ -180,7 +194,11 @@ class HomeView extends GetView<HomeController> {
               child: CText(
                 textAlign: TextAlign.center,
                 maxLines: 2,
-                text: title,
+                text: service == null
+                    ? ''
+                    : AppController.to.isEnglish
+                        ? service.name!
+                        : service.nameAr!,
                 color: primaryColor,
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w500,

@@ -6,3 +6,4 @@ final LANGUAGE = 'Language';
 //sessions
 
 const IS_AUTH = "isAuth";
+const STEP_NAME = "StepName";

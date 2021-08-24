@@ -6,17 +6,19 @@ import 'package:squeeze/app/widgets/custom_text.dart';
 class CTitleTopBar extends StatelessWidget {
   final title;
   final Alignment? alignment;
+  final double? bottomPadding;
 
   const CTitleTopBar({
     this.title,
     this.alignment,
+    this.bottomPadding,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        bottom: 70,
+        bottom: bottomPadding ?? 70,
         top: AppBar().preferredSize.height + 20,
       ),
       alignment: alignment ?? Alignment.center,
