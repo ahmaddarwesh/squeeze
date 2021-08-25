@@ -25,37 +25,43 @@ class ProfileView extends GetView<ProfileController> {
           child: Container(
             width: Get.width,
             height: Get.height,
-            padding: EdgeInsets.symmetric(horizontal: 15),
             child: Column(
               children: [
                 Flexible(
                   flex: 6,
                   child: Column(
                     children: [
-                      CTitleTopBar(title: LocaleKeys.edit_profile.tr),
-                      SizedBox(height: 20),
-                      CTextField(
-                        hint: "First Name",
-                        controller: TextEditingController(
-                          text: Sessions.read("first", def: ""),
+                      CTitleTopBar(title: LocaleKeys.edit_profile.tr, horizontalPadding: 0),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 20),
+                            CTextField(
+                              hint: "First Name",
+                              controller: TextEditingController(
+                                text: Sessions.read("first", def: ""),
+                              ),
+                            ),
+                            SizedBox(height: 15),
+                            CTextField(
+                              hint: "Last Name",
+                              controller: TextEditingController(
+                                text: Sessions.read("last", def: ""),
+                              ),
+                            ),
+                            SizedBox(height: 15),
+                            CTextField(
+                              hint: "Email Address",
+                              controller: TextEditingController(
+                                text: Sessions.read("email", def: ""),
+                              ),
+                            ),
+                            SizedBox(height: 15),
+                            buildPhoneNumber(),
+                          ],
                         ),
-                      ),
-                      SizedBox(height: 15),
-                      CTextField(
-                        hint: "Last Name",
-                        controller: TextEditingController(
-                          text: Sessions.read("last", def: ""),
-                        ),
-                      ),
-                      SizedBox(height: 15),
-                      CTextField(
-                        hint: "Email Address",
-                        controller: TextEditingController(
-                          text: Sessions.read("email", def: ""),
-                        ),
-                      ),
-                      SizedBox(height: 15),
-                      buildPhoneNumber(),
+                      )
                     ],
                   ),
                 ),
@@ -63,7 +69,7 @@ class ProfileView extends GetView<ProfileController> {
                   flex: 3,
                   child: CButton(
                     radius: 12,
-                    margin: EdgeInsets.only(bottom: 100),
+                    margin: EdgeInsets.only(bottom: 100, left: 20, right: 20),
                     child: CText(
                       text: LocaleKeys.update.tr,
                       fontSize: 13.sp,

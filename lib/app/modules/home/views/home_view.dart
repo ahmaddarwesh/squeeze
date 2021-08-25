@@ -86,6 +86,7 @@ class HomeView extends GetView<HomeController> {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: CText(
+                    height: AppController.to.isEnglish ? 1.2 : 1.4,
                     text: LocaleKeys.the_services_you_need.tr,
                     color: secondaryColor,
                     fontSize: 16.sp,

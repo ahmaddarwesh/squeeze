@@ -26,7 +26,6 @@ class AccountView extends GetView<AccountController> {
         textDirection: AppController.to.textDirection,
         child: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
                 !AppController.to.isAuth ? buildLoginItems() : buildAuthItems(),
@@ -82,10 +81,13 @@ class AccountView extends GetView<AccountController> {
             buildBottomSection(),
           ],
         ),
-        Column(
-          children: [
-            buildLogout(),
-          ],
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              buildLogout(),
+            ],
+          ),
         ),
       ],
     );
@@ -112,8 +114,10 @@ class AccountView extends GetView<AccountController> {
     );
   }
 
-  Align buildLoginSignup() {
-    return Align(
+  Widget buildLoginSignup() {
+    return Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: CButton(
         height: 48,
         color: secondaryColor,
@@ -132,6 +136,7 @@ class AccountView extends GetView<AccountController> {
 
   Container buildFindTheBest() {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: FindTheBest(
         fontSize: 30.sp,
       ),
@@ -155,6 +160,7 @@ class AccountView extends GetView<AccountController> {
 
   buildBottomSection() {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: ListView(
         padding: EdgeInsets.zero,
         shrinkWrap: true,
@@ -165,7 +171,7 @@ class AccountView extends GetView<AccountController> {
           }),
           buildItem(LocaleKeys.about_us.tr, IC_INFO),
           buildItem(LocaleKeys.help.tr, IC_QUESTION, onTap: () {
-            AppController.to.changeIsAuth(!AppController.to.isAuth);
+            // AppController.to.changeIsAuth(!AppController.to.isAuth);
           }),
         ],
       ),
@@ -214,6 +220,7 @@ class AccountView extends GetView<AccountController> {
 
   buildAuthOptions() {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: Directionality(
         textDirection: AppController.to.textDirection,
         child: ListView(

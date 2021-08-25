@@ -30,11 +30,9 @@ class RegisterView extends GetView<RegisterController> {
             child: Container(
               height: Get.height,
               width: Get.width,
-              padding: EdgeInsets.symmetric(horizontal: 15),
               child: Form(
-                autovalidateMode: controller.startValidate
-                    ? AutovalidateMode.always
-                    : AutovalidateMode.disabled,
+                autovalidateMode:
+                    controller.startValidate ? AutovalidateMode.always : AutovalidateMode.disabled,
                 onChanged: () {
                   Get.appUpdate();
                 },
@@ -45,15 +43,22 @@ class RegisterView extends GetView<RegisterController> {
                       flex: 6,
                       child: Column(
                         children: [
-                          CTitleTopBar(title: "Sign Up"),
-                          SizedBox(height: 20),
-                          buildFirstName(),
-                          SizedBox(height: 13),
-                          buildLastName(),
-                          SizedBox(height: 13),
-                          buildEmail(),
-                          SizedBox(height: 13),
-                          buildPhoneNumber(),
+                          CTitleTopBar(title: "Sign Up", horizontalPadding: 0),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 15),
+                            child: Column(
+                              children: [
+                                SizedBox(height: 20),
+                                buildFirstName(),
+                                SizedBox(height: 13),
+                                buildLastName(),
+                                SizedBox(height: 13),
+                                buildEmail(),
+                                SizedBox(height: 13),
+                                buildPhoneNumber(),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -61,7 +66,7 @@ class RegisterView extends GetView<RegisterController> {
                       flex: 3,
                       child: CButton(
                         radius: 12,
-                        margin: EdgeInsets.only(bottom: 100),
+                        margin: EdgeInsets.only(bottom: 100, left: 20, right: 20),
                         child: CText(
                           text: "Sign Up",
                           fontSize: 13.sp,
@@ -158,45 +163,38 @@ class RegisterView extends GetView<RegisterController> {
       backgroundColor: Colors.white,
       body: Container(
         height: Get.height * .7,
-        margin: EdgeInsets.only(top: 20),
-        padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: CButton(
-                onTap: () {
-                  Get.back();
-                },
-                child: Icon(
-                  FontAwesome.left_open,
-                  size: 20,
-                  color: Colors.black,
-                ),
-              ),
-            ),
             CTitleTopBar(
               title: "Verification code",
+              horizontalPadding: 0,
             ),
-            SizedBox(height: 20),
-            CText(
-              text:
-                  "Please enter the six digit code has been sent to your phone number by SMS",
-              fontSize: 12.sp,
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 20),
-            buildPinCode(),
-            SizedBox(height: 20),
-            CButton(
-              child: CText(text: "Verify"),
-              onTap: () {
-                controller.verificationCode();
-              },
-              height: 45,
-              color: secondaryColor,
-              width: Get.width,
-            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  SizedBox(height: 20),
+                  CText(
+                    text:
+                        "Please enter the six digit code has been sent to your phone number by SMS",
+                    fontSize: 12.sp,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  buildPinCode(),
+                  SizedBox(height: 20),
+                  CButton(
+                    child: CText(text: "Verify"),
+                    onTap: () {
+                      controller.verificationCode();
+                    },
+                    height: 45,
+                    color: secondaryColor,
+                    width: Get.width,
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),

@@ -20,7 +20,6 @@ class ChangeLanguageView extends GetView<ChangeLanguageController> {
         backgroundColor: white,
         body: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 15),
             width: Get.width,
             height: Get.height,
             child: Column(
@@ -29,11 +28,18 @@ class ChangeLanguageView extends GetView<ChangeLanguageController> {
                   flex: 6,
                   child: Column(
                     children: [
-                      CTitleTopBar(title: LocaleKeys.select_language.tr),
-                      SizedBox(height: 20),
-                      buildEnglish(),
-                      SizedBox(height: 12),
-                      buildArabic(),
+                      CTitleTopBar(title: LocaleKeys.select_language.tr, horizontalPadding: 0),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 20),
+                            buildEnglish(),
+                            SizedBox(height: 12),
+                            buildArabic(),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -41,7 +47,7 @@ class ChangeLanguageView extends GetView<ChangeLanguageController> {
                   flex: 3,
                   child: CButton(
                     radius: 12,
-                    margin: EdgeInsets.only(bottom: 220),
+                    margin: EdgeInsets.only(bottom: 220, right: 20, left: 20),
                     child: CText(
                       text: LocaleKeys.update.tr,
                       fontSize: 13.sp,
@@ -69,9 +75,7 @@ class ChangeLanguageView extends GetView<ChangeLanguageController> {
       radius: 13,
       width: Get.width,
       height: 45,
-      border: !controller.tempIsEnglish
-          ? Border.all(width: 1, color: Colors.grey[300]!)
-          : null,
+      border: !controller.tempIsEnglish ? Border.all(width: 1, color: Colors.grey[300]!) : null,
       color: controller.tempIsEnglish ? secondaryColor : null,
       onTap: () {
         if (controller.tempIsEnglish) {
@@ -79,9 +83,7 @@ class ChangeLanguageView extends GetView<ChangeLanguageController> {
         }
         controller.changeTempLanguage(EN);
       },
-      padding: AppController.to.isEnglish
-          ? EdgeInsets.only(left: 15)
-          : EdgeInsets.only(right: 15),
+      padding: AppController.to.isEnglish ? EdgeInsets.only(left: 15) : EdgeInsets.only(right: 15),
       child: Align(
         alignment: AppController.to.alignment,
         child: CText(
@@ -100,18 +102,14 @@ class ChangeLanguageView extends GetView<ChangeLanguageController> {
       width: Get.width,
       height: 45,
       color: !controller.tempIsEnglish ? secondaryColor : null,
-      border: controller.tempIsEnglish
-          ? Border.all(width: 1, color: Colors.grey[300]!)
-          : null,
+      border: controller.tempIsEnglish ? Border.all(width: 1, color: Colors.grey[300]!) : null,
       onTap: () {
         if (!controller.tempIsEnglish) {
           return;
         }
         controller.changeTempLanguage(AR);
       },
-      padding: AppController.to.isEnglish
-          ? EdgeInsets.only(left: 15)
-          : EdgeInsets.only(right: 15),
+      padding: AppController.to.isEnglish ? EdgeInsets.only(left: 15) : EdgeInsets.only(right: 15),
       child: Align(
         alignment: AppController.to.alignment,
         child: CText(
