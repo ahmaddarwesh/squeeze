@@ -146,7 +146,7 @@ class HomeView extends GetView<HomeController> {
             text: LocaleKeys.select_category.tr,
             fontWeight: FontWeight.w600,
             color: Colors.black,
-            fontSize: 16.sp,
+            fontSize: 15.sp,
           ),
           SizedBox(height: 15),
           GetBuilder<HomeController>(
@@ -201,8 +201,9 @@ class HomeView extends GetView<HomeController> {
                         ? service.name!
                         : service.nameAr!,
                 color: primaryColor,
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w500,
+                fontSize: 10.5.sp,
+                letterSpacing: 0.2,
+                fontWeight: FontWeight.w600,
               ),
             )
           ],

@@ -1,6 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 471.2 471.2">
-    <path
-        d="M227.619 444.2h-122.9c-33.4 0-60.5-27.2-60.5-60.5V87.5c0-33.4 27.2-60.5 60.5-60.5h124.9c7.5 0 13.5-6 13.5-13.5s-6-13.5-13.5-13.5h-124.9c-48.3 0-87.5 39.3-87.5 87.5v296.2c0 48.3 39.3 87.5 87.5 87.5h122.9c7.5 0 13.5-6 13.5-13.5s-6.1-13.5-13.5-13.5z" />
-    <path
-        d="M450.019 226.1l-85.8-85.8c-5.3-5.3-13.8-5.3-19.1 0-5.3 5.3-5.3 13.8 0 19.1l62.8 62.8h-273.9c-7.5 0-13.5 6-13.5 13.5s6 13.5 13.5 13.5h273.9l-62.8 62.8c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4l85.8-85.8c5.4-5.4 5.4-14 .1-19.2z" />
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" width="42" height="42">
+	<title>Menu</title>
+	<defs>
+		<image width="42" height="42" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAADFw8lbAAAAAXNSR0IArs4c6QAAAepJREFUWEfd2b1KQzEUB/B/ckuxToKDo6MItb1pcSiC1hdwEBU3R0dX9QXEt/ANRBFXF3UpJXfTjuIDFKrESsEjgVYutbeUmw977dqk+SWn4SQnDH/wKRaLC7lcbnl4aMbYu1Kq1Wq13n5959tZLpcF5/wBQCFh7B4R3QRBcNpsNp8HbZhvqBDiGMDZBOMqItqNouhWt/UOnWBF43NQnPOqXlnvUK1I+o8CWOScHxGRGGiJ6DKKou0/gY4Le71en+l0Oo8xbE8pNT91UD2JMAwPGGMXsQmtWoHqVWi32+v5fP6p0Wi8TrBRxjYJw7DOGLuLhX/TClQIcQ9gDcAHgH0p5bUJ1gm0VqsVut2uisF6AHZMsE6gGiiEuAKwZQvrDFqtVmd1NiGiTRtYZ1CNs4l1CrWJdQ61hfUCtYH1BjXFeoWaYL1D02IToZVK5VAfUgHkTFLfmL4cwAqAuVgbAnAipTwf7jcSWiqVloIg+DnyO4Im/eyXlDL4X1A9m0yE3nWo06RW77s+DbJ/wndzcB4VlbRIr1ATpDeoKdIL1AbSOdQW0inUJtIpNBOXu6xdlwcFiE8AeyZ3eqeh7xe2NojoWUr5YpqWvafQtGBnRbK0oFH9pqrsmIlCbmZK4//psWE6nm/0BkrzIPYNcvcUm2hsJPYAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<g id="Menu">
+		<g id="Sign out">
+			<use id="Vector Smart Object" href="#img1" transform="matrix(1,0,0,1,0,0)"/>
+		</g>
+	</g>
 </svg>

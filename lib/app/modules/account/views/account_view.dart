@@ -82,6 +82,7 @@ class AccountView extends GetView<AccountController> {
           ],
         ),
         Container(
+          margin: EdgeInsets.only(top: 100),
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [

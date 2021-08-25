@@ -119,7 +119,7 @@ class Locales {
     'my_booking': 'My Booking',
     'addresses': 'My Addresses',
     'update': 'Update',
-    'logout': 'Logout',
+    'logout': 'Sign out',
     'select_language': 'Select Language',
     'edit_profile': 'Edit Profile',
   };
