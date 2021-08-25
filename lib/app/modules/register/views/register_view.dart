@@ -66,7 +66,7 @@ class RegisterView extends GetView<RegisterController> {
                       flex: 3,
                       child: CButton(
                         radius: 12,
-                        margin: EdgeInsets.only(bottom: 100, left: 20, right: 20),
+                        margin: EdgeInsets.only(left: 20, right: 20),
                         child: CText(
                           text: "Sign Up",
                           fontSize: 13.sp,

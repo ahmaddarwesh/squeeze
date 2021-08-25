@@ -47,7 +47,7 @@ class ChangeLanguageView extends GetView<ChangeLanguageController> {
                   flex: 3,
                   child: CButton(
                     radius: 12,
-                    margin: EdgeInsets.only(bottom: 220, right: 20, left: 20),
+                    margin: EdgeInsets.only(left: 20, right: 20),
                     child: CText(
                       text: LocaleKeys.update.tr,
                       fontSize: 13.sp,
