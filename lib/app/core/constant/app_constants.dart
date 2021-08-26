@@ -7,3 +7,4 @@ final LANGUAGE = 'Language';
 
 const IS_AUTH = "isAuth";
 const STEP_NAME = "StepName";
+const MY_PROFILE_INFO = "MyProfileInfo";

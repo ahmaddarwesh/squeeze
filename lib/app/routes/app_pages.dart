@@ -8,6 +8,8 @@ import 'package:squeeze/app/modules/change_language/bindings/change_language_bin
 import 'package:squeeze/app/modules/change_language/views/change_language_view.dart';
 import 'package:squeeze/app/modules/home/bindings/home_binding.dart';
 import 'package:squeeze/app/modules/home/views/home_view.dart';
+import 'package:squeeze/app/modules/login/bindings/login_binding.dart';
+import 'package:squeeze/app/modules/login/views/login_view.dart';
 import 'package:squeeze/app/modules/map/bindings/map_binding.dart';
 import 'package:squeeze/app/modules/map/views/map_view.dart';
 import 'package:squeeze/app/modules/profile/bindings/profile_binding.dart';
@@ -68,6 +70,11 @@ class AppPages {
       name: _Paths.STEPS,
       page: () => StepsView(),
       binding: StepsBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGIN,
+      page: () => LoginView(),
+      binding: LoginBinding(),
     ),
   ];
 }

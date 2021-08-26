@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
+import 'package:squeeze/app/core/constant/app_constants.dart';
+import 'package:squeeze/app/core/sessions/sessions.dart';
 import 'package:squeeze/app/modules/splash/views/select_language_view.dart';
+import 'package:squeeze/app/routes/app_pages.dart';
 
 class SplashController extends GetxController {
   @override
@@ -10,7 +13,10 @@ class SplashController extends GetxController {
   @override
   void onReady() async {
     await 1.seconds.delay();
-    Get.off(() => SelectLanguageView(), transition: Transition.noTransition);
+    if (Sessions.read(LANGUAGE) == null)
+      Get.off(() => SelectLanguageView(), transition: Transition.noTransition);
+    else
+      Get.offNamed(Routes.HOME);
     super.onReady();
   }
 

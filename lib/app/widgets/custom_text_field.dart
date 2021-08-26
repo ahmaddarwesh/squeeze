@@ -13,6 +13,7 @@ class CTextField extends StatefulWidget {
   final TextInputAction? textInputAction;
   final Function(String text)? onChange;
   final String? Function(String? data)? validator;
+  final bool readOnly;
 
   const CTextField({
     Key? key,
@@ -25,6 +26,7 @@ class CTextField extends StatefulWidget {
     this.onChange,
     this.validator,
     this.height,
+    this.readOnly = false,
   });
 
   @override
@@ -49,6 +51,7 @@ class _CTextFieldState extends State<CTextField> {
           color: black,
         ),
         onChanged: widget.onChange,
+        readOnly: widget.readOnly,
         validator: widget.validator,
         keyboardType: widget.textInputType,
         inputFormatters: widget.textInputFormatter,

@@ -7,12 +7,14 @@ import 'package:squeeze/app/theme/app_themes.dart';
 
 import 'app/core/constant/app_constants.dart';
 import 'app/core/functions/dialogs.dart';
+import 'app/data/models/user_model.dart';
 
 class AppController extends GetxController {
   static AppController get to => Get.find();
   late CrossAxisAlignment crossAxisAlignment;
   late TextDirection textDirection;
   late Alignment alignment;
+  late User user;
 
   var isEnglish = true;
   var languageBox = GetStorage("Squeeze");
@@ -37,6 +39,9 @@ class AppController extends GetxController {
   @override
   void onInit() {
     isAuth = Sessions.read(IS_AUTH, def: false);
+    if (isAuth) {
+      user = Sessions.read(MY_PROFILE_INFO);
+    }
     changeByLanguage();
     languageBox.listenKey(LANGUAGE, (value) {
       isEnglish = value != AR;

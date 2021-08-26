@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
+
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:squeeze/app/core/functions/formatter_helper.dart';
 import 'package:squeeze/app/routes/app_pages.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
-import 'package:squeeze/app/widgets/custom_appbar.dart';
 import 'package:squeeze/app/widgets/custom_button.dart';
 import 'package:squeeze/app/widgets/custom_text.dart';
 import 'package:squeeze/app/widgets/custom_text_field.dart';
 import 'package:squeeze/app/widgets/custom_title_top_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../controllers/login_controller.dart';
 
-import '../controllers/register_controller.dart';
-
-class RegisterView extends GetView<RegisterController> {
+class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<RegisterController>(
+    return GetBuilder<LoginController>(
       builder: (_) => GestureDetector(
         onTap: () {
           Get.focusScope!.unfocus();
@@ -44,18 +41,12 @@ class RegisterView extends GetView<RegisterController> {
                       flex: 6,
                       child: Column(
                         children: [
-                          CTitleTopBar(title: "Sign Up", horizontalPadding: 0),
+                          CTitleTopBar(title: "Login", horizontalPadding: 0),
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 15),
                             child: Column(
                               children: [
                                 SizedBox(height: 20),
-                                buildFirstName(),
-                                SizedBox(height: 13),
-                                buildLastName(),
-                                SizedBox(height: 13),
-                                buildEmail(),
-                                SizedBox(height: 13),
                                 buildPhoneNumber(),
                               ],
                             ),
@@ -71,7 +62,7 @@ class RegisterView extends GetView<RegisterController> {
                             radius: 12,
                             margin: EdgeInsets.only(left: 20, right: 20),
                             child: CText(
-                              text: "Sign Up",
+                              text: "Login",
                               fontSize: 13.sp,
                               color: primaryColor,
                               fontWeight: FontWeight.w600,
@@ -80,7 +71,7 @@ class RegisterView extends GetView<RegisterController> {
                             width: Get.width,
                             height: 45,
                             onTap: () {
-                              controller.register(onSuccess: () {
+                              controller.login(onSuccess: () {
                                 Get.focusScope!.unfocus();
                                 showBarModalBottomSheet(
                                   closeProgressThreshold: 20,
@@ -100,7 +91,7 @@ class RegisterView extends GetView<RegisterController> {
                             border: Border.all(width: 1, color: Colors.grey[300]!),
                             margin: EdgeInsets.only(left: 20, right: 20),
                             child: CText(
-                              text: "Login",
+                              text: "Sign up",
                               fontSize: 13.sp,
                               color: black,
                               fontWeight: FontWeight.w600,
@@ -108,7 +99,7 @@ class RegisterView extends GetView<RegisterController> {
                             width: Get.width,
                             height: 45,
                             onTap: () {
-                              Get.offNamed(Routes.LOGIN);
+                              Get.offNamed(Routes.REGISTER);
                             },
                           ),
                         ],
@@ -121,33 +112,6 @@ class RegisterView extends GetView<RegisterController> {
           ),
         ),
       ),
-    );
-  }
-
-  CTextField buildEmail() {
-    return CTextField(
-      hint: "Email Address",
-      validator: controller.emailValidate,
-      textInputAction: TextInputAction.next,
-      controller: controller.emailController,
-    );
-  }
-
-  CTextField buildLastName() {
-    return CTextField(
-      hint: "Last Name",
-      validator: controller.nameValidation,
-      textInputAction: TextInputAction.next,
-      controller: controller.lastNameController,
-    );
-  }
-
-  CTextField buildFirstName() {
-    return CTextField(
-      hint: "First Name",
-      validator: controller.nameValidation,
-      textInputAction: TextInputAction.next,
-      controller: controller.firstNameController,
     );
   }
 

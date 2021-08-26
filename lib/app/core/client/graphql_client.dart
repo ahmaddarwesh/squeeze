@@ -18,8 +18,7 @@ class Client {
 
   Future<ValueNotifier<GraphQLClient>> getClient() async {
     final directory = await getApplicationSupportDirectory();
-    final cookieJar =
-        PersistCookieJar(storage: store.FileStorage(directory.path));
+    final cookieJar = PersistCookieJar(storage: store.FileStorage(directory.path));
     // var cookieJar = CookieJar(ignoreExpires: true);
     dio.interceptors.add(CookieManager(cookieJar));
     dio.interceptors.add(InterceptorsWrapper(
@@ -58,5 +57,16 @@ printDioError(DioError dioError) {
   } else {
     l(error: dioError.message);
     l(error: dioError.error);
+  }
+}
+
+void printTheError({OperationException? exception}) {
+  if (exception != null) {
+    if (exception.linkException != null) {
+      l(error: "linkException: " + exception.linkException!.originalException.toString());
+    }
+    if (exception.graphqlErrors.isNotEmpty) {
+      l(error: "graphqlErrors: " + exception.graphqlErrors.first.message);
+    }
   }
 }

@@ -7,21 +7,18 @@ import 'package:squeeze/app/routes/app_pages.dart';
 import 'package:squeeze/app_controller.dart';
 
 class SelectLanguageController extends GetxController {
-  late String selected;
-  selectLanguage(String locale) async {
-    await AppController.to.changeLanguage(locale: locale);
-    Get.offAllNamed(Routes.HOME);
-  }
+  String? selected;
 
-  changeSelected(String language) {
+  changeSelected(String language) async {
     selected = language;
-    selectLanguage(language);
     update();
+    await AppController.to.changeLanguage(locale: language);
+    Get.offAllNamed(Routes.HOME);
   }
 
   @override
   void onInit() {
-    selected = Sessions.read(LANGUAGE, def: EN);
+    // selected = Sessions.read(LANGUAGE, def: EN);
     super.onInit();
   }
 

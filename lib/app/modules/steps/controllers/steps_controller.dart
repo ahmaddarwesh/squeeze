@@ -18,7 +18,7 @@ class StepsController extends GetxController {
     list.add(Options(id: 0, name: "Apartment"));
     list.add(Options(id: 1, name: "Villa"));
     list.add(Options(id: 2, name: "Office"));
-    list.add(Options(id: 3, name: "Apartment"));
+    list.add(Options(id: 3, name: "Shop"));
     selectedOption = list.first;
     super.onInit();
   }

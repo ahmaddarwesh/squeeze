@@ -34,8 +34,8 @@ class CTitleTopBar extends StatelessWidget {
                 Get.back();
               },
               child: Container(
-                width: 40,
-                height: 60,
+                width: 50,
+                height: 50,
                 decoration: BoxDecoration(
                   color: primaryColor,
                   borderRadius: AppController.to.isEnglish
