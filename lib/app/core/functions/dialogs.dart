@@ -1,28 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:squeeze/app/widgets/custom_button.dart';
 import 'package:squeeze/app/widgets/custom_text.dart';
 
 Future showLoading({Duration? duration}) async {
   Get.dialog(
-    Align(
-      child: Container(
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: SizedBox(
-          height: 20,
-          width: 20,
-          child: CircularProgressIndicator(
-            color: Colors.black,
-            strokeWidth: 5,
-          ),
-        ),
-      ),
+    Lottie.asset(
+      'assets/animations/loading.json',
     ),
+    barrierDismissible: false,
   );
   if (duration != null) {
     await duration.delay();
@@ -36,14 +24,7 @@ hideLoading() {
   }
 }
 
-showInfo(
-    {text,
-    title,
-    with2Buttons = false,
-    mainText,
-    cancelText,
-    mainOnTap,
-    cancelOnTap}) {
+showInfo({text, title, with2Buttons = false, mainText, cancelText, mainOnTap, cancelOnTap}) {
   Get.dialog(
     Align(
       child: Container(

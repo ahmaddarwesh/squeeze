@@ -14,8 +14,9 @@ class FindTheBest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: AppController.to.alignment,
       child: Column(
-        crossAxisAlignment: AppController.to.crossAxisAlignment,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CText(
             text: LocaleKeys.find_the_best.tr,

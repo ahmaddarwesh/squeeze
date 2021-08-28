@@ -90,7 +90,7 @@ class Options {
   int? index;
   String? name;
   String? nameAr;
-  Object? settings;
+  var settings;
   int? stepId;
   String? type;
 

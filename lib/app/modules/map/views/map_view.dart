@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:squeeze/app/core/constant/app_constants.dart';
+import 'package:squeeze/app/core/sessions/sessions.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:squeeze/app/widgets/custom_button.dart';
+import 'package:squeeze/app_controller.dart';
 import 'package:squeeze/generated/locales.g.dart';
 
 import '../controllers/map_controller.dart';
@@ -51,6 +54,11 @@ class MapView extends GetView<MapController> {
       floatingActionButton: CButton(
         text: LocaleKeys.confirm.tr,
         onTap: () {
+          if (AppController.to.mainAddress.value == "Select address") {
+            Sessions.write(MAIN_ADDRESS, "Jumeirah Beach Residence");
+          } else {
+            Sessions.write(MAIN_ADDRESS, "Select address");
+          }
           Get.back();
         },
         color: secondaryColor,

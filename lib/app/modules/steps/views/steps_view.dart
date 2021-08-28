@@ -19,36 +19,72 @@ class StepsView extends GetView<StepsController> {
               children: [
                 CTitleTopBar(
                   title: controller.serviceName,
-                  bottomPadding: 20,
+                  bottomPadding: 0,
                   horizontalPadding: 0,
                 ),
-                ListView.builder(
-                  padding: EdgeInsets.zero,
-                  itemCount: 1,
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext context, int index) {
-                    return buildSection(
-                      GetBuilder<StepsController>(
-                        builder: (_) => Container(
-                          height: 125.w,
-                          child: GridView.builder(
-                            padding: EdgeInsets.only(left: 20, right: 20, top: 15),
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 1,
-                              mainAxisSpacing: 10,
+                GetBuilder<StepsController>(
+                  builder: (_) => ListView(
+                    shrinkWrap: true,
+                    padding: EdgeInsets.zero,
+                    children: [
+                      buildProperty(),
+                      Visibility(
+                        visible: controller.selectedOption == null,
+                        child: Column(
+                          children: [
+                            SizedBox(height: 200),
+                            Center(
+                              child: CText(
+                                text: "Select Your Property Type",
+                                fontSize: 20,
+                              ),
                             ),
-                            itemCount: controller.list.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return buildIconItem(controller.list[index]);
-                            },
-                          ),
+                          ],
                         ),
                       ),
-                    );
-                  },
+                      buildRooms(
+                        "Number of rooms",
+                        controller.list2,
+                      ),
+                      buildRooms(
+                        "Cleaning hours",
+                        controller.list3,
+                      ),
+                      buildRooms(
+                        "Cleaning staff",
+                        controller.list4,
+                      ),
+                    ],
+                  ),
                 )
+                // ListView.builder(
+                //   padding: EdgeInsets.zero,
+                //   itemCount: 1,
+                //   shrinkWrap: true,
+                //   itemBuilder: (BuildContext context, int index1) {
+                //     return buildSection(
+                //       title: "Property type",
+                //       widget: GetBuilder<StepsController>(
+                //         builder: (_) => Container(
+                //           height: 125.w,
+                //           child: GridView.builder(
+                //             padding: EdgeInsets.only(left: 20, right: 20, top: 15),
+                //             shrinkWrap: true,
+                //             scrollDirection: Axis.horizontal,
+                //             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                //               crossAxisCount: 1,
+                //               mainAxisSpacing: 10,
+                //             ),
+                //             itemCount: 4,
+                //             itemBuilder: (BuildContext context, int index) {
+                //               return buildIconItem(controller.list[index]);
+                //             },
+                //           ),
+                //         ),
+                //       ),
+                //     );
+                //   },
+                // )
               ],
             )
           : Center(
@@ -56,6 +92,62 @@ class StepsView extends GetView<StepsController> {
                 text: "Coming soon.",
               ),
             ),
+    );
+  }
+
+  Widget buildRooms(title, list) {
+    return Visibility(
+      visible: controller.selectedOption != null,
+      child: buildSection(
+        title: title,
+        widget: GetBuilder<StepsController>(
+          builder: (_) => Container(
+            height: 62.w,
+            child: GridView.builder(
+              padding: EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 15,
+              ),
+              physics: BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 1,
+                mainAxisSpacing: 13,
+                childAspectRatio: 1.35,
+              ),
+              itemCount: list.length,
+              itemBuilder: (BuildContext context, int index) {
+                return buildNormalItem(list[index]);
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildProperty() {
+    return buildSection(
+      title: "Property type",
+      widget: GetBuilder<StepsController>(
+        builder: (_) => Container(
+          height: 125.w,
+          child: GridView.builder(
+            physics: BouncingScrollPhysics(),
+            padding: EdgeInsets.only(left: 20, right: 20, top: 15),
+            scrollDirection: Axis.horizontal,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 1,
+              mainAxisSpacing: 10,
+            ),
+            itemCount: controller.list.length,
+            itemBuilder: (BuildContext context, int index) {
+              return buildIconItem(controller.list[index]);
+            },
+          ),
+        ),
+      ),
     );
   }
 
@@ -85,6 +177,21 @@ class StepsView extends GetView<StepsController> {
     );
   }
 
+  Widget buildNormalItem(Options options) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(width: 1, color: Colors.grey[300]!),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Center(
+        child: CText(
+          fontSize: 15.sp,
+          text: options.name.toString(),
+        ),
+      ),
+    );
+  }
+
   Widget buildIconItem(Options option) {
     return CButton(
       onTap: () {
@@ -102,7 +209,7 @@ class StepsView extends GetView<StepsController> {
               child: CText(
                 textAlign: TextAlign.center,
                 maxLines: 2,
-                text: option.name.toString(),
+                text: option.name!,
                 color: controller.selectedOption == option ? primaryColor : black,
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
@@ -114,28 +221,31 @@ class StepsView extends GetView<StepsController> {
     );
   }
 
-  Widget buildSection(widget) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            SizedBox(width: 20),
-            CText(
-              text: "Property type",
-              fontWeight: FontWeight.w700,
-              fontSize: 14.sp,
-              height: 1,
-            ),
-            SizedBox(width: 8),
-            Icon(
-              FontAwesome.question_circle_o,
-              size: 12,
-            )
-          ],
-        ),
-        widget,
-      ],
+  Widget buildSection({widget, title}) {
+    return Container(
+      margin: EdgeInsets.only(top: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              SizedBox(width: 20),
+              CText(
+                text: title,
+                fontWeight: FontWeight.w700,
+                fontSize: 14.sp,
+                height: 1,
+              ),
+              SizedBox(width: 8),
+              Icon(
+                FontAwesome.question_circle_o,
+                size: 12,
+              )
+            ],
+          ),
+          widget,
+        ],
+      ),
     );
   }
 }

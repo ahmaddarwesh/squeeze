@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttericon/entypo_icons.dart';
 import 'package:get/get.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
+import 'package:squeeze/app/widgets/custom_button.dart';
 import 'package:squeeze/app/widgets/custom_text.dart';
 import 'package:squeeze/app_controller.dart';
 
@@ -12,12 +12,20 @@ class CTitleTopBar extends StatelessWidget {
   final Alignment? alignment;
   final double? bottomPadding;
   final double? horizontalPadding;
+  final Widget? customWidget;
+  final double? fontSize;
+  final Color? textColor;
+  final onTitleTap;
 
   const CTitleTopBar({
     this.title,
     this.alignment,
     this.bottomPadding,
     this.horizontalPadding,
+    this.customWidget,
+    this.fontSize,
+    this.textColor,
+    this.onTitleTap,
   });
 
   @override
@@ -29,34 +37,35 @@ class CTitleTopBar extends StatelessWidget {
           child: Hero(
             tag: "TitleTopBack",
             transitionOnUserGestures: true,
-            child: GestureDetector(
-              onTap: () {
-                Get.back();
-              },
-              child: Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: primaryColor,
-                  borderRadius: AppController.to.isEnglish
-                      ? BorderRadius.only(
-                          topLeft: Radius.circular(50),
-                          bottomLeft: Radius.circular(50),
-                        )
-                      : BorderRadius.only(
-                          bottomRight: Radius.circular(50),
-                          topRight: Radius.circular(50),
-                        ),
+            child: customWidget ??
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Container(
+                    width: 50,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: AppController.to.isEnglish
+                          ? BorderRadius.only(
+                              topLeft: Radius.circular(50),
+                              bottomLeft: Radius.circular(50),
+                            )
+                          : BorderRadius.only(
+                              bottomRight: Radius.circular(50),
+                              topRight: Radius.circular(50),
+                            ),
+                    ),
+                    child: Icon(
+                      AppController.to.isEnglish ? Entypo.left_open_mini : Entypo.right_open_mini,
+                      color: black,
+                      size: 30.w,
+                    ),
+                  ),
                 ),
-                child: Icon(
-                  AppController.to.isEnglish ? Entypo.left_open_mini : Entypo.right_open_mini,
-                  color: black,
-                  size: 30.w,
-                ),
-              ),
-            ),
           ),
-          top: 60,
+          top: 50,
           right: AppController.to.isEnglish ? 0 : null,
           left: AppController.to.isEnglish ? null : 0,
         ),
@@ -73,15 +82,18 @@ class CTitleTopBar extends StatelessWidget {
                     ? 0
                     : 20,
             bottom: bottomPadding ?? 70,
-            top: AppBar().preferredSize.height + 20,
+            top: AppBar().preferredSize.height + 10,
           ),
           alignment: alignment ?? Alignment.center,
-          child: CText(
-            height: 1,
-            text: title,
-            fontWeight: FontWeight.w700,
-            color: secondaryColor,
-            fontSize: 18.sp,
+          child: GestureDetector(
+            onTap: onTitleTap,
+            child: CText(
+              height: 1,
+              text: title,
+              fontWeight: FontWeight.w700,
+              color: textColor ?? secondaryColor,
+              fontSize: fontSize ?? 18.sp,
+            ),
           ),
         ),
       ],

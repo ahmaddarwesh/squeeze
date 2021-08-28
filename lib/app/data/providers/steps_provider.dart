@@ -3,12 +3,12 @@ import 'package:squeeze/app/core/client/graphql_client.dart';
 
 class StepsProvider {
   static var document = r'''  
-    query Query($stepsOrderBy: [StepOrderByInput!]) {
+    query Query($stepsOrderBy: [StepOrderByInput!], $optionsOrderBy: [StepOptionOrderByInput!]) {
       steps(orderBy: $stepsOrderBy) {
         id
         index
         name
-        options {
+        options(orderBy: $optionsOrderBy) {
           id
           name
           name_ar
@@ -22,11 +22,15 @@ class StepsProvider {
       }
     }
   ''';
-  static Future<QueryResult> getSteps({orderBy}) async {
+
+  static Future<QueryResult> getSteps() async {
     var client = await Client().getClient();
     var mutationOptions = MutationOptions(
       document: gql(document),
-      variables: {"stepsOrderBy": orderBy},
+      variables: {
+        "stepsOrderBy": {"id": "asc"},
+        "optionsOrderBy": {"id": "asc"},
+      },
       // {"index": "asc"}
     );
     return await client.value.mutate(mutationOptions);

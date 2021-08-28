@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
+import 'package:squeeze/app/core/functions/dialogs.dart';
 import 'package:squeeze/app/data/models/service_model.dart';
 import 'package:squeeze/app/data/repositories/services_repository.dart';
 import 'package:squeeze/app/routes/app_pages.dart';
+
 import 'package:squeeze/app_controller.dart';
 
 class HomeController extends GetxController {
@@ -10,6 +12,7 @@ class HomeController extends GetxController {
   getServices() async {
     services = await ServicesRepository.getServices();
     update();
+    hideLoading();
   }
 
   String getServiceName(int index) =>
@@ -23,13 +26,14 @@ class HomeController extends GetxController {
 
   @override
   void onReady() {
+    showLoading();
     super.onReady();
   }
 
   @override
   void onClose() {}
 
-  void onServiceTap(Service? service) {
+  void onServiceTap(Service? service) async {
     if (service == null) return;
     Get.toNamed(Routes.STEPS, arguments: service);
   }

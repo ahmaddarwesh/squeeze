@@ -15,6 +15,7 @@ class AppController extends GetxController {
   late TextDirection textDirection;
   late Alignment alignment;
   late User user;
+  RxString mainAddress = RxString('');
 
   var isEnglish = true;
   var languageBox = GetStorage("Squeeze");
@@ -24,7 +25,7 @@ class AppController extends GetxController {
     if (locale == null) {
       locale = isEnglish ? AR : EN;
     }
-    await showLoading(duration: 500.milliseconds);
+    await showLoading(duration: 1000.milliseconds);
     Get.updateLocale(Locale(locale));
     Sessions.write(LANGUAGE, locale);
   }
@@ -39,6 +40,7 @@ class AppController extends GetxController {
   @override
   void onInit() {
     isAuth = Sessions.read(IS_AUTH, def: false);
+    mainAddress(Sessions.read(MAIN_ADDRESS, def: "Select address"));
     if (isAuth) {
       user = User.fromJson(Sessions.read(MY_PROFILE_INFO));
     }
@@ -46,6 +48,11 @@ class AppController extends GetxController {
     languageBox.listenKey(LANGUAGE, (value) {
       isEnglish = value != AR;
       changeByLanguage();
+    });
+
+    Sessions.box.listenKey(MAIN_ADDRESS, (value) {
+      mainAddress(value);
+      Get.appUpdate();
     });
     super.onInit();
   }
