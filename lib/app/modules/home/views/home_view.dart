@@ -2,13 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fluttericon/entypo_icons.dart';
-import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:squeeze/app/core/constant/app_constants.dart';
 import 'package:squeeze/app/core/constant/assets_const.dart';
-import 'package:squeeze/app/core/logger/logger.dart';
 import 'package:squeeze/app/data/models/service_model.dart';
 import 'package:squeeze/app/routes/app_pages.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
@@ -31,11 +27,54 @@ class HomeView extends GetView<HomeController> {
           height: Get.height,
           child: Scaffold(
             backgroundColor: white,
-            appBar: appBar(),
+            // appBar: appBar(),
             body: ListView(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 15),
               shrinkWrap: true,
               children: [
+                Container(
+                  margin: EdgeInsets.only(
+                    bottom: 10,
+                    top: AppBar().preferredSize.height,
+                  ),
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(child: Container(), flex: 1),
+                      Expanded(
+                        flex: 10,
+                        child: CButton(
+                          onTap: () async {
+                            await Get.toNamed(Routes.MAP);
+                          },
+                          child: CText(
+                            height: 1,
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            text: "Select address",
+                            fontWeight: FontWeight.w700,
+                            color: secondaryColor,
+                            fontSize: 15.sp,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: CButton(
+                          onTap: () {
+                            Get.toNamed(Routes.ACCOUNT);
+                          },
+                          child: Container(
+                            width: 18,
+                            height: 18,
+                            child: SvgPicture.asset(IC_MENU),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 buildBanner(),
                 SizedBox(height: 15),
                 buildServices(),
@@ -101,6 +140,68 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
+  // CAppBar appBar() {
+  //   return CAppBar(
+  //     title: Container(
+  //       constraints: BoxConstraints(
+  //         maxWidth: Get.width * .70,
+  //       ),
+  //       child: CButton(
+  //         onTap: () async {
+  //           await Get.toNamed(Routes.MAP);
+  //         },
+  //         child: CText(
+  //           textAlign: TextAlign.center,
+  //           text: 'Jumeirah Beach Residence',
+  //           overflow: TextOverflow.ellipsis,
+  //           color: black,
+  //           fontWeight: FontWeight.w600,
+  //           fontSize: 15.sp,
+  //         ),
+  //       ),
+  //     ),
+  //     actions: [
+  //       CButton(
+  //         onTap: () {
+  //           Get.toNamed(Routes.ACCOUNT);
+  //         },
+  //         padding: EdgeInsets.only(right: 20),
+  //         child: Container(
+  //           width: 18,
+  //           height: 18,
+  //           child: SvgPicture.asset(IC_MENU),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
+
+  buildServices() {
+    return Container(
+      child: Column(
+        crossAxisAlignment: AppController.to.crossAxisAlignment,
+        children: [
+          CText(
+            text: LocaleKeys.select_category.tr,
+            fontWeight: FontWeight.w600,
+            color: Colors.black,
+            fontSize: 15.sp,
+          ),
+          SizedBox(height: 15),
+          GetBuilder<HomeController>(
+            builder: (_) => controller.services.isEmpty
+                ? Shimmer.fromColors(
+                    baseColor: Colors.grey[200]!,
+                    highlightColor: Colors.white,
+                    child: buildGridView(),
+                  )
+                : buildGridView(fake: false),
+          )
+        ],
+      ),
+    );
+  }
+
   CAppBar appBar() {
     return CAppBar(
       title: Container(
@@ -137,34 +238,9 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  buildServices() {
-    return Container(
-      child: Column(
-        crossAxisAlignment: AppController.to.crossAxisAlignment,
-        children: [
-          CText(
-            text: LocaleKeys.select_category.tr,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-            fontSize: 15.sp,
-          ),
-          SizedBox(height: 15),
-          GetBuilder<HomeController>(
-            builder: (_) => controller.services.isEmpty
-                ? Shimmer.fromColors(
-                    baseColor: Colors.grey[200]!,
-                    highlightColor: Colors.white,
-                    child: buildGridView(),
-                  )
-                : buildGridView(fake: false),
-          )
-        ],
-      ),
-    );
-  }
-
   GridView buildGridView({fake: true}) {
     return GridView.builder(
+      padding: EdgeInsets.zero,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
