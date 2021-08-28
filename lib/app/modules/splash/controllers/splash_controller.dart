@@ -13,10 +13,9 @@ class SplashController extends GetxController {
   @override
   void onReady() async {
     await 1.seconds.delay();
-    if (Sessions.read(LANGUAGE) == null)
-      Get.off(() => SelectLanguageView(), transition: Transition.noTransition);
-    else
-      Get.offNamed(Routes.HOME);
+
+    Get.off(() => SelectLanguageView(), transition: Transition.noTransition);
+
     super.onReady();
   }
 
