@@ -39,7 +39,7 @@ class MyApp extends GetView<AppController> {
             locale: Locale(Sessions.read(LANGUAGE, def: EN)),
             theme: Themes.light,
             debugShowCheckedModeBanner: false,
-            transitionDuration: 200.milliseconds,
+            transitionDuration: 250.milliseconds,
             translationsKeys: AppTranslation.translations,
             defaultTransition: Transition.rightToLeft,
           );

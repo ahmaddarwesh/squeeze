@@ -13,8 +13,7 @@ class SplashController extends GetxController {
   @override
   void onReady() async {
     await 1.seconds.delay();
-
-    Get.off(() => SelectLanguageView(), transition: Transition.noTransition);
+    Get.off(() => SelectLanguageView());
 
     super.onReady();
   }
