@@ -81,7 +81,7 @@ class CTitleTopBar extends StatelessWidget {
             text: title,
             fontWeight: FontWeight.w700,
             color: secondaryColor,
-            fontSize: 17.sp,
+            fontSize: 19.sp,
           ),
         ),
       ],
