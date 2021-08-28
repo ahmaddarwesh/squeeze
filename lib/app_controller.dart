@@ -40,7 +40,7 @@ class AppController extends GetxController {
   void onInit() {
     isAuth = Sessions.read(IS_AUTH, def: false);
     if (isAuth) {
-      user = Sessions.read(MY_PROFILE_INFO);
+      user = User.fromJson(Sessions.read(MY_PROFILE_INFO));
     }
     changeByLanguage();
     languageBox.listenKey(LANGUAGE, (value) {

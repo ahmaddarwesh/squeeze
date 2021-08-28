@@ -8,9 +8,11 @@ import 'package:squeeze/app_controller.dart';
 class StepsController extends GetxController {
   late Service service;
   late String serviceName;
+  late List<Step> listSteps;
   List<Options> list = [];
   late Options selectedOption;
 
+  getSteps() {}
   @override
   void onInit() {
     service = Get.arguments as Service;
