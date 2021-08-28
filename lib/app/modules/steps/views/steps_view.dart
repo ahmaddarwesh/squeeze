@@ -19,10 +19,11 @@ class StepsView extends GetView<StepsController> {
               children: [
                 CTitleTopBar(
                   title: controller.serviceName,
-                  bottomPadding: 10,
+                  bottomPadding: 20,
                   horizontalPadding: 0,
                 ),
                 ListView.builder(
+                  padding: EdgeInsets.zero,
                   itemCount: 1,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {

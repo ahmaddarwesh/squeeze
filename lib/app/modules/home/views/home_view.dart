@@ -35,7 +35,7 @@ class HomeView extends GetView<HomeController> {
                 Container(
                   margin: EdgeInsets.only(
                     bottom: 10,
-                    top: AppBar().preferredSize.height,
+                    top: 40,
                   ),
                   alignment: Alignment.center,
                   child: Row(
@@ -54,7 +54,7 @@ class HomeView extends GetView<HomeController> {
                             maxLines: 1,
                             text: "Select address",
                             fontWeight: FontWeight.w700,
-                            color: secondaryColor,
+                            color: black,
                             fontSize: 15.sp,
                           ),
                         ),
