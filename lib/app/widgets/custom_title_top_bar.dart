@@ -16,6 +16,7 @@ class CTitleTopBar extends StatelessWidget {
   final double? fontSize;
   final Color? textColor;
   final onTitleTap;
+  final onBackPressed;
 
   const CTitleTopBar({
     this.title,
@@ -26,6 +27,7 @@ class CTitleTopBar extends StatelessWidget {
     this.fontSize,
     this.textColor,
     this.onTitleTap,
+    this.onBackPressed,
   });
 
   @override
@@ -40,7 +42,11 @@ class CTitleTopBar extends StatelessWidget {
             child: customWidget ??
                 GestureDetector(
                   onTap: () {
-                    Get.back();
+                    if (onBackPressed != null) {
+                      onBackPressed();
+                    } else {
+                      Get.back();
+                    }
                   },
                   child: Container(
                     width: 50,

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:squeeze/app/core/constant/assets_const.dart';
 import 'package:squeeze/app/data/models/service_model.dart';
 import 'package:squeeze/app/routes/app_pages.dart';
@@ -151,7 +150,7 @@ class HomeView extends GetView<HomeController> {
             color: Colors.black,
             fontSize: 15.sp,
           ),
-          SizedBox(height: 15),
+          SizedBox(height: 12),
           GetBuilder<HomeController>(
             builder: (_) => buildGridView(),
           )
@@ -244,6 +243,7 @@ class HomeView extends GetView<HomeController> {
       child: CText(
         text: LocaleKeys.how_it_works.tr,
         color: Colors.black,
+        fontSize: 15.sp,
         fontWeight: FontWeight.w600,
       ),
       color: Colors.grey[200],

@@ -64,6 +64,7 @@ class Options {
     this.description,
     this.descriptionAr,
     this.id,
+    this.parentId,
     this.index,
     this.name,
     this.nameAr,
@@ -76,6 +77,7 @@ class Options {
         description: asT<String?>(jsonRes['description']),
         descriptionAr: asT<String?>(jsonRes['description_ar']),
         id: asT<int?>(jsonRes['id']),
+        parentId: asT<int?>(jsonRes['parentId']),
         index: asT<int?>(jsonRes['index']),
         name: asT<String?>(jsonRes['name']),
         nameAr: asT<String?>(jsonRes['name_ar']),
@@ -87,6 +89,7 @@ class Options {
   String? description;
   String? descriptionAr;
   int? id;
+  int? parentId;
   int? index;
   String? name;
   String? nameAr;
@@ -103,6 +106,7 @@ class Options {
         'description': description,
         'description_ar': descriptionAr,
         'id': id,
+        'parentId': parentId,
         'index': index,
         'name': name,
         'name_ar': nameAr,
@@ -116,6 +120,7 @@ class Options {
       description: description,
       descriptionAr: descriptionAr,
       id: id,
+      parentId: parentId,
       index: index,
       name: name,
       nameAr: nameAr,

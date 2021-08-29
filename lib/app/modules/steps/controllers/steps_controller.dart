@@ -1,4 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:squeeze/app/core/constant/remote_constants.dart';
+import 'package:squeeze/app/core/functions/dialogs.dart';
+import 'package:squeeze/app/core/logger/logger.dart';
 import 'package:squeeze/app/data/models/service_model.dart';
 import 'package:squeeze/app/data/models/step_model.dart';
 import 'package:squeeze/app/data/repositories/step_repository.dart';
@@ -8,53 +12,129 @@ class StepsController extends GetxController {
   late Service service;
   late String serviceName;
 
-  List<Options> list = [];
-  List<Options> list2 = [];
-  List<Options> list3 = [];
-  List<Options> list4 = [];
-  var selectedOption;
+  late int currentStep;
+  late double totalValue;
 
-  // List<Step> steps = [];
+  late PageController pageController;
 
-  // Map<String, dynamic> order = {};
+  List<Step> steps = [];
+  Map<String, dynamic> order = {};
 
-  // getSteps() {
-  //   StepRepository.getSteps().then((value) {
-  //     steps.addAll(value);
-  //   });
-  // }
+  Map<String, dynamic> costs = {};
+
+  getSteps() async {
+    showLoading();
+    await StepRepository.getSteps().then((value) {
+      steps.addAll(value);
+      savePricing();
+      update();
+    });
+    hideLoading();
+  }
+
+  void savePricing() {
+    steps[currentStep].options!.forEach((element) {
+      var price = element.settings[PRICE];
+      if (price != null) {
+        costs[element.id.toString()] = price;
+      }
+    });
+    l(info: costs);
+  }
+
+  void select(int id, selectedObject) {
+    order[id.toString()] = selectedObject;
+    var count = selectedObject[VALUE];
+    calculatePrice();
+
+    // var settings = steps[currentStep].options!.firstWhere((element) => element.id == id).settings;
+    // var valueTimesPrice = settings[VALUE_TIMES_PRICE];
+    // var costTimesValue = settings[COST_TIMES_VALUE];
+
+    // if (costTimesValue != null) {
+    //   totalValue = double.parse((costTimesValue * value).toString());
+    // }
+    //
+    // if (valueTimesPrice != null) {
+    //   totalValue = totalValue * value;
+    // }
+
+    update();
+  }
+
+  void calculatePrice() {
+    order.forEach((key, value) {
+      costs.forEach((key1, value1) {
+        var costTimesValue = value1[COST_TIMES_VALUE];
+        var valueTimesPrice = value1[VALUE_TIMES_PRICE];
+        var count = value[VALUE];
+
+        if (key == key1) {
+          if (costTimesValue != null) {
+            totalValue = double.parse((costTimesValue * count).toString());
+          }
+          if (valueTimesPrice != null) {
+            totalValue = totalValue * count;
+          }
+        }
+      });
+    });
+  }
+
+  bool isSelected(int id, selectedObject) {
+    // return true;
+    if (order.keys.contains(id.toString())) {
+      if (selectedObject == order[id.toString()]) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  bool isOptionsSelectItem(int? id) {
+    if (id == null) return true;
+    return order.keys.contains(id.toString());
+  }
+
+  void changeStep({toNext = true}) {
+    if (toNext) {
+      if (currentStep > steps.length) return;
+      currentStep += 1;
+    } else {
+      if (currentStep == 0) return;
+      currentStep -= 1;
+    }
+
+    pageController.animateToPage(
+      currentStep,
+      duration: 400.milliseconds,
+      curve: Curves.ease,
+    );
+    update();
+  }
+
+  Future<bool> onBackPressed() async {
+    if (currentStep == 0) {
+      Get.back();
+      return true;
+    } else {
+      changeStep(toNext: false);
+      return false;
+    }
+  }
 
   @override
   void onInit() async {
     service = Get.arguments as Service;
     serviceName = AppController.to.isEnglish ? service.name! : service.nameAr!;
-    // await getSteps();
+    pageController = PageController();
+    currentStep = 0;
+    totalValue = 0.00;
 
-    list.add(Options(id: 0, name: "Apartment"));
-    list.add(Options(id: 1, name: "Villa"));
-    list.add(Options(id: 2, name: "Office"));
-    list.add(Options(id: 3, name: "Shop"));
-
-    list2.add(Options(id: 0, name: "S"));
-    list2.add(Options(id: 1, name: "1"));
-    list2.add(Options(id: 2, name: "2"));
-    list2.add(Options(id: 3, name: "3"));
-    list2.add(Options(id: 4, name: "4"));
-    list2.add(Options(id: 5, name: "5"));
-    list2.add(Options(id: 6, name: "6"));
-
-    list3.add(Options(id: 0, name: "2"));
-    list3.add(Options(id: 1, name: "3"));
-    list3.add(Options(id: 2, name: "4"));
-    list3.add(Options(id: 3, name: "5"));
-    list3.add(Options(id: 4, name: "6"));
-    list3.add(Options(id: 5, name: "7"));
-    list3.add(Options(id: 6, name: "8"));
-
-    list4.add(Options(id: 0, name: "1"));
-    list4.add(Options(id: 1, name: "2"));
-    list4.add(Options(id: 2, name: "3"));
-    list4.add(Options(id: 3, name: "4"));
+    await getSteps();
     super.onInit();
   }
 
@@ -65,9 +145,41 @@ class StepsController extends GetxController {
 
   @override
   void onClose() {}
-
-  void selectOption(Options option) {
-    selectedOption = option;
-    update();
-  }
 }
+
+// List<Options> list = [];
+// List<Options> list2 = [];
+// List<Options> list3 = [];
+// List<Options> list4 = [];
+// var selectedOption;
+
+// void selectOption(Options option) {
+//   selectedOption = option;
+//   update();
+// }
+
+// list.add(Options(id: 0, name: "Apartment"));
+// list.add(Options(id: 1, name: "Villa"));
+// list.add(Options(id: 2, name: "Office"));
+// list.add(Options(id: 3, name: "Shop"));
+//
+// list2.add(Options(id: 0, name: "S"));
+// list2.add(Options(id: 1, name: "1"));
+// list2.add(Options(id: 2, name: "2"));
+// list2.add(Options(id: 3, name: "3"));
+// list2.add(Options(id: 4, name: "4"));
+// list2.add(Options(id: 5, name: "5"));
+// list2.add(Options(id: 6, name: "6"));
+//
+// list3.add(Options(id: 0, name: "2"));
+// list3.add(Options(id: 1, name: "3"));
+// list3.add(Options(id: 2, name: "4"));
+// list3.add(Options(id: 3, name: "5"));
+// list3.add(Options(id: 4, name: "6"));
+// list3.add(Options(id: 5, name: "7"));
+// list3.add(Options(id: 6, name: "8"));
+//
+// list4.add(Options(id: 0, name: "1"));
+// list4.add(Options(id: 1, name: "2"));
+// list4.add(Options(id: 2, name: "3"));
+// list4.add(Options(id: 3, name: "4"));

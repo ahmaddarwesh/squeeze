@@ -6,6 +6,7 @@ import 'package:squeeze/app/widgets/custom_button.dart';
 import 'package:squeeze/app/widgets/custom_text.dart';
 
 Future showLoading({Duration? duration}) async {
+  await 50.milliseconds.delay();
   Get.dialog(
     Lottie.asset(
       'assets/animations/loading.json',

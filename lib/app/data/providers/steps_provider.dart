@@ -10,6 +10,7 @@ class StepsProvider {
         name
         options(orderBy: $optionsOrderBy) {
           id
+          parentId
           name
           name_ar
           description

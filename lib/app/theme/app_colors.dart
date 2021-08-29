@@ -5,3 +5,4 @@ final Color primaryColor = '#dffe02'.toColor();
 final Color secondaryColor = '#330ef5'.toColor();
 final Color white = '#fff'.toColor();
 final Color black = Colors.grey[900]!;
+final Color borderColor = Colors.grey[200]!;

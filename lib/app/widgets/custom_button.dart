@@ -16,6 +16,8 @@ class CButton extends StatelessWidget {
   final Border? border;
   final EdgeInsets? margin;
   final bool disable;
+  final FontWeight? fontWight;
+  final double? opacity;
 
   CButton({
     this.text,
@@ -29,6 +31,8 @@ class CButton extends StatelessWidget {
     this.border,
     this.margin,
     this.disable = false,
+    this.fontWight,
+    this.opacity,
   });
 
   @override
@@ -44,6 +48,7 @@ class CButton extends StatelessWidget {
           border: border,
         ),
         child: CupertinoButton(
+          pressedOpacity: opacity ?? 0.4,
           disabledColor: Colors.black12,
           borderRadius: BorderRadius.circular(radius ?? 15),
           child: child ??
@@ -51,7 +56,7 @@ class CButton extends StatelessWidget {
                 text: text!,
                 fontSize: 13.sp,
                 color: disable ? Colors.grey[500] : primaryColor,
-                fontWeight: FontWeight.w600,
+                fontWeight: fontWight ?? FontWeight.w600,
               ),
           onPressed: onTap,
           padding: padding ?? EdgeInsets.zero,
