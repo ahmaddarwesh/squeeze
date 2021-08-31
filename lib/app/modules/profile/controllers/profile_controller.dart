@@ -85,7 +85,8 @@ class ProfileController extends GetxController {
 
   @override
   void onInit() {
-    user = Sessions.read(MY_PROFILE_INFO);
+    user = User.fromJson(Sessions.read(MY_PROFILE_INFO));
+
     firstNameController = TextEditingController(text: user.firstName);
     lastNameController = TextEditingController(text: user.lastName);
     emailController = TextEditingController(text: user.email);

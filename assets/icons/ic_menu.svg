@@ -3,7 +3,7 @@
         <image width="56" height="46" id="img1"
             href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAAuCAMAAABK1yqqAAAAAXNSR0IB2cksfwAAAEJQTFRFAAAAMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExR2lPZQAAABZ0Uk5TAAEL2f/1VjfgOOgP5/xmCC0wFAMoDQocqg4AAAB8SURBVHic7dZBDoAgDATACiggKCjw/68a72ybcO7cN4EmlCUi2hgEGes4+4GCns05F1AwCsETBVNmc9cNL1nqw3jxdJRSSOvcs5rrjWgEYQXMF8oQdw7g14PLR10ejlIK4r/yuVrE8gDkJNYVIK7vHKGSAdb84+FKIKyGH1phFvhZBpIdAAAAAElFTkSuQmCC" />
     </defs>
-    <style></style>
+
     <g id="Home Page">
         <use id="Vector Smart Object" href="#img1" x="0" y="0" />
     </g>

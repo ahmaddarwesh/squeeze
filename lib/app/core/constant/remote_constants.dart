@@ -4,6 +4,11 @@ const LIST = 'list';
 const TEXT = 'text';
 const VALUE = 'value';
 const PRICE = 'price';
+const PADDING = 'padding';
+const SCROLLABLE = 'scrollable';
+const MULTI_SELECT = 'multiSelect';
+const X = 'x';
+const Y = 'y';
 const COST_TIMES_VALUE = 'costTimesValue';
 const VALUE_TIMES_PRICE = 'valueTimesPrice';
 

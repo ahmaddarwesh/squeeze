@@ -22,7 +22,10 @@ class SelectLanguageView extends GetView<SelectLanguageController> {
           children: [
             SizedBox(height: AppBar().preferredSize.height),
             Container(
-              child: FindTheBest(),
+              child: Directionality(
+                textDirection: AppController.to.textDirection,
+                child: FindTheBest(),
+              ),
             ),
             GetBuilder<SelectLanguageController>(
               builder: (_) => Container(
@@ -54,6 +57,7 @@ class SelectLanguageView extends GetView<SelectLanguageController> {
     return CButton(
       width: Get.width * .62,
       height: 110,
+      opacity: 0.9,
       onTap: () {
         controller.changeSelected(lang);
       },

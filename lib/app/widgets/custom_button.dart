@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:squeeze/app/widgets/custom_text.dart';
+import 'package:supercharged/supercharged.dart';
 
 class CButton extends StatelessWidget {
   final String? text;
@@ -18,6 +19,7 @@ class CButton extends StatelessWidget {
   final bool disable;
   final FontWeight? fontWight;
   final double? opacity;
+  final bool withAnimated;
 
   CButton({
     this.text,
@@ -33,6 +35,7 @@ class CButton extends StatelessWidget {
     this.disable = false,
     this.fontWight,
     this.opacity,
+    this.withAnimated = false,
   });
 
   @override
@@ -44,8 +47,9 @@ class CButton extends StatelessWidget {
         margin: margin,
         height: height,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(radius ?? 15),
+          borderRadius: BorderRadius.circular(radius ?? 13),
           border: border,
+          color: disable ? Colors.grey[300] : color,
         ),
         child: CupertinoButton(
           pressedOpacity: opacity ?? 0.4,
@@ -60,7 +64,7 @@ class CButton extends StatelessWidget {
               ),
           onPressed: onTap,
           padding: padding ?? EdgeInsets.zero,
-          color: disable ? Colors.grey[300] : color,
+          // color: disable ? Colors.grey[300] : color,
         ),
       ),
     );

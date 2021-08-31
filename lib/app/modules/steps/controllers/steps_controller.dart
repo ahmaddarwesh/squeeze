@@ -42,28 +42,32 @@ class StepsController extends GetxController {
     l(info: costs);
   }
 
-  void select(int id, selectedObject) {
-    order[id.toString()] = selectedObject;
-    var count = selectedObject[VALUE];
+  void select(int id, selectedObject, {multiSelect = false}) {
+    if (multiSelect) {
+      if (order.containsKey(id.toString())) {
+        var list = order[id.toString()] as List;
+        if (list.contains(selectedObject)) {
+          list.remove(selectedObject);
+        } else {
+          list.add(selectedObject);
+        }
+        order[id.toString()] = list;
+      } else {
+        order[id.toString()] = [selectedObject];
+      }
+    } else {
+      order[id.toString()] = selectedObject;
+    }
     calculatePrice();
-
-    // var settings = steps[currentStep].options!.firstWhere((element) => element.id == id).settings;
-    // var valueTimesPrice = settings[VALUE_TIMES_PRICE];
-    // var costTimesValue = settings[COST_TIMES_VALUE];
-
-    // if (costTimesValue != null) {
-    //   totalValue = double.parse((costTimesValue * value).toString());
-    // }
-    //
-    // if (valueTimesPrice != null) {
-    //   totalValue = totalValue * value;
-    // }
 
     update();
   }
 
   void calculatePrice() {
     order.forEach((key, value) {
+      if (value is List) {
+        return;
+      }
       costs.forEach((key1, value1) {
         var costTimesValue = value1[COST_TIMES_VALUE];
         var valueTimesPrice = value1[VALUE_TIMES_PRICE];
@@ -81,13 +85,21 @@ class StepsController extends GetxController {
     });
   }
 
-  bool isSelected(int id, selectedObject) {
-    // return true;
+  bool isSelected(int id, selectedObject, {multiSelect = false}) {
     if (order.keys.contains(id.toString())) {
-      if (selectedObject == order[id.toString()]) {
-        return true;
+      if (multiSelect) {
+        var list = order[id.toString()] as List;
+        if (list.contains(selectedObject)) {
+          return true;
+        } else {
+          return false;
+        }
       } else {
-        return false;
+        if (selectedObject == order[id.toString()]) {
+          return true;
+        } else {
+          return false;
+        }
       }
     } else {
       return false;

@@ -1,8 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:squeeze/app/core/constant/remote_constants.dart';
+import 'package:squeeze/app/core/logger/logger.dart';
 import 'package:squeeze/app/data/models/step_model.dart' as stp;
 import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:squeeze/app/widgets/custom_button.dart';
@@ -46,7 +50,7 @@ class StepsView extends GetView<StepsController> {
                 ),
               ),
       ),
-      bottomSheet: buildBottomNext(),
+      bottomNavigationBar: buildBottomNext(),
     );
   }
 
@@ -104,97 +108,161 @@ class StepsView extends GetView<StepsController> {
   }
 
   Widget buildSimpleSelect(stp.Options options) {
-    return options.settings![LIST] == null || options.settings![LIST] == []
+    List? list;
+    if (options.settings![LIST] != null) list = options.settings![LIST] as List;
+
+    return list == null || list == []
         ? Container()
         : buildSection(
             visible: controller.isOptionsSelectItem(options.parentId),
             title: options.name,
             widget: GetBuilder<StepsController>(
               builder: (_) {
-                return Container(
-                  height: 62.w,
-                  child: GridView.builder(
+                return SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  child: Container(
                     padding: EdgeInsets.only(left: 20, right: 20, top: 15),
-                    physics: BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 1,
-                      mainAxisSpacing: 13,
-                      childAspectRatio: 1.35,
+                    child: Row(
+                      children: list!.map((i) {
+                        var index = list!.indexOf(i);
+                        return buildNormalItem(options.settings!, options.id!, index);
+                      }).toList(),
                     ),
-                    itemCount: options.settings![LIST].length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return buildNormalItem(
-                        options.settings![LIST][index],
-                        options.id!,
-                      );
-                    },
                   ),
                 );
+                // return Container(
+                //   height: 63.w,
+                //   child: ListView.separated(
+                //     padding: EdgeInsets.only(left: 20, right: 20, top: 15),
+                //     scrollDirection: Axis.horizontal,
+                //     physics: BouncingScrollPhysics(),
+                //     itemCount: list.length,
+                //     itemBuilder: (BuildContext context, int index) {
+                //       return
+                //     },
+                //     separatorBuilder: (BuildContext context, int index) {
+                //       return SizedBox(width: 12);
+                //     },
+                //   ),
+                // );
               },
             ),
           );
   }
 
   Widget buildIconicSelect(stp.Options options) {
+    List list = options.settings![LIST];
+
     return buildSection(
       visible: controller.isOptionsSelectItem(options.parentId),
       title: options.name,
       widget: GetBuilder<StepsController>(
-        builder: (_) => Container(
-          height: 125.w,
-          child: GridView.builder(
-            physics: BouncingScrollPhysics(),
-            padding: EdgeInsets.only(left: 20, right: 20, top: 15),
-            scrollDirection: Axis.horizontal,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-              mainAxisSpacing: 15,
+        builder: (_) => options.settings![SCROLLABLE]
+            ? Container(
+                height: 115.w,
+                child: GridView.builder(
+                  physics: BouncingScrollPhysics(),
+                  padding: EdgeInsets.only(left: 20, right: 20, top: 15),
+                  scrollDirection: Axis.horizontal,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemCount: list.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return buildIconItem(options.settings!, options.id!, index);
+                  },
+                ))
+            : Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.only(left: 20, right: 20, top: 15),
+                child: Wrap(
+                  runAlignment: WrapAlignment.start,
+                  alignment: WrapAlignment.start,
+                  spacing: 7,
+                  runSpacing: 7,
+                  children: list.map(
+                    (e) {
+                      var index = list.indexOf(e);
+                      return Container(
+                        width: 100.w,
+                        height: 100.w,
+                        child: buildIconItem(options.settings!, options.id!, index),
+                      );
+                    },
+                  ).toList(),
+                ),
+              ),
+      ),
+    );
+  }
+
+  Widget buildNormalItem(dynamic object, int optionId, index) {
+    var isSelected = controller.isSelected(
+      optionId,
+      object[LIST][index],
+      multiSelect: object[MULTI_SELECT] ?? false,
+    );
+    return Container(
+      margin: EdgeInsets.only(right: 13),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(14),
+        onTap: () {
+          controller.select(
+            optionId,
+            object[LIST][index],
+            multiSelect: object[MULTI_SELECT] ?? false,
+          );
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 1,
+              color: isSelected ? secondaryColor : Colors.grey[300]!,
             ),
-            itemCount: options.settings![LIST].length,
-            itemBuilder: (BuildContext context, int index) {
-              return buildIconItem(
-                options.settings![LIST][index],
-                options.id!,
-              );
-            },
+            borderRadius: BorderRadius.circular(14),
+            color: isSelected ? secondaryColor : null,
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: double.parse((object[PADDING][X] ?? 14).toString()),
+            vertical: double.parse((object[PADDING][Y] ?? 14).toString()),
+          ),
+          child: Center(
+            child: CText(
+              style: GoogleFonts.roboto(
+                fontFeatures: [FontFeature.tabularFigures()],
+                fontSize: 15.sp,
+                color: isSelected ? primaryColor : black,
+              ),
+              text: object[LIST][index][TEXT].toString(),
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget buildNormalItem(dynamic object, int optionId) {
-    return CButton(
-      onTap: () {
-        controller.select(optionId, object);
-      },
-      opacity: 0.8,
-      color: controller.isSelected(optionId, object) ? secondaryColor : null,
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(width: 1, color: Colors.grey[300]!),
-          borderRadius: BorderRadius.circular(14),
-        ),
-        child: Center(
-          child: CText(
-            fontSize: 15.sp,
-            text: object[TEXT].toString(),
-            color: controller.isSelected(optionId, object) ? primaryColor : black,
-          ),
-        ),
-      ),
+  Widget buildIconItem(dynamic object, int optionId, index) {
+    var isSelected = controller.isSelected(
+      optionId,
+      object[LIST][index],
+      multiSelect: object[MULTI_SELECT] ?? false,
     );
-  }
-
-  Widget buildIconItem(dynamic object, int optionId) {
     return CButton(
       onTap: () {
-        controller.select(optionId, object);
+        controller.select(
+          optionId,
+          object[LIST][index],
+          multiSelect: object[MULTI_SELECT] ?? false,
+        );
       },
       opacity: 0.8,
-      color: controller.isSelected(optionId, object) ? secondaryColor : null,
-      border: Border.all(width: 1, color: Colors.grey[300]!),
+      color: isSelected ? secondaryColor : null,
+      border: Border.all(
+        width: 1,
+        color: isSelected ? secondaryColor : Colors.grey[300]!,
+      ),
       child: Container(
         child: Stack(
           children: [
@@ -205,10 +273,11 @@ class StepsView extends GetView<StepsController> {
               child: CText(
                 textAlign: TextAlign.center,
                 maxLines: 2,
-                text: object[TEXT].toString(),
-                color: controller.isSelected(optionId, object) ? primaryColor : black,
+                height: 1.1,
+                text: object[LIST][index][TEXT].toString(),
+                color: isSelected ? primaryColor : black,
                 fontSize: 14.sp,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w400,
               ),
             )
           ],

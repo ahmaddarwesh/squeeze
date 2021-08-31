@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -61,6 +63,7 @@ class CText extends StatelessWidget {
           ? style
           : AppController.to.isEnglish
               ? GoogleFonts.poppins(
+                  fontFeatures: [FontFeature.tabularFigures()],
                   height: height != null
                       ? height
                       : AppController.to.isEnglish
