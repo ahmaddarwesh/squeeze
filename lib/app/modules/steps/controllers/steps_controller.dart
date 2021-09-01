@@ -33,13 +33,14 @@ class StepsController extends GetxController {
   }
 
   void savePricing() {
-    steps[currentStep].options!.forEach((element) {
-      var price = element.settings[PRICE];
-      if (price != null) {
-        costs[element.id.toString()] = price;
-      }
+    steps.forEach((step) {
+      step.options!.forEach((option) {
+        var price = option.settings[PRICE];
+        if (price != null) {
+          costs[option.id.toString()] = price;
+        }
+      });
     });
-    l(info: costs);
   }
 
   void select(int id, selectedObject, {multiSelect = false}) {
@@ -59,26 +60,37 @@ class StepsController extends GetxController {
       order[id.toString()] = selectedObject;
     }
     calculatePrice();
-
     update();
   }
 
   void calculatePrice() {
-    order.forEach((key, value) {
-      if (value is List) {
-        return;
-      }
-      costs.forEach((key1, value1) {
-        var costTimesValue = value1[COST_TIMES_VALUE];
-        var valueTimesPrice = value1[VALUE_TIMES_PRICE];
-        var count = value[VALUE];
-
+    costs.forEach((key1, value1) {
+      order.forEach((key, value) {
+        // if (value is List) {
+        //   return;
+        // }
         if (key == key1) {
+          var costTimesValue = value1[COST_TIMES_VALUE];
+          var valueTimesPrice = value1[VALUE_TIMES_PRICE];
+          var costPlusPrice = value1[COST_PLUS_PRICE];
+          var count;
+          if (value is List) {
+            count = 0;
+            value.forEach((element) {
+              count = count + element[COST];
+            });
+          } else {
+            count = value[VALUE];
+          }
+
           if (costTimesValue != null) {
             totalValue = double.parse((costTimesValue * count).toString());
           }
           if (valueTimesPrice != null) {
             totalValue = totalValue * count;
+          }
+          if (costPlusPrice != null) {
+            totalValue = totalValue + count;
           }
         }
       });
