@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:squeeze/app/core/constant/remote_constants.dart';
 import 'package:squeeze/app/core/functions/dialogs.dart';
-import 'package:squeeze/app/core/logger/logger.dart';
 import 'package:squeeze/app/data/models/service_model.dart';
 import 'package:squeeze/app/data/models/step_model.dart';
 import 'package:squeeze/app/data/repositories/step_repository.dart';
@@ -66,9 +65,6 @@ class StepsController extends GetxController {
   void calculatePrice() {
     costs.forEach((key1, value1) {
       order.forEach((key, value) {
-        // if (value is List) {
-        //   return;
-        // }
         if (key == key1) {
           var costTimesValue = value1[COST_TIMES_VALUE];
           var valueTimesPrice = value1[VALUE_TIMES_PRICE];
@@ -125,7 +121,7 @@ class StepsController extends GetxController {
 
   void changeStep({toNext = true}) {
     if (toNext) {
-      if (currentStep > steps.length) return;
+      if (currentStep == steps.length - 1) return;
       currentStep += 1;
     } else {
       if (currentStep == 0) return;

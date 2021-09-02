@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
@@ -118,34 +119,54 @@ class StepsView extends GetView<StepsController> {
             title: options.name,
             widget: GetBuilder<StepsController>(
               builder: (_) {
-                return SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  child: Container(
+                return Container(
+                  height: 60.w,
+                  child: ListView.separated(
                     padding: EdgeInsets.only(left: 20, right: 20, top: 15),
-                    child: Row(
-                      children: list!.map((i) {
-                        var index = list!.indexOf(i);
-                        return buildNormalItem(options.settings!, options.id!, index);
-                      }).toList(),
-                    ),
+                    physics: BouncingScrollPhysics(),
+                    itemCount: list!.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return buildNormalItem(options.settings!, options.id!, index);
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return SizedBox(width: 10);
+                    },
                   ),
                 );
-                // return Container(
-                //   height: 63.w,
-                //   child: ListView.separated(
-                //     padding: EdgeInsets.only(left: 20, right: 20, top: 15),
-                //     scrollDirection: Axis.horizontal,
-                //     physics: BouncingScrollPhysics(),
-                //     itemCount: list.length,
-                //     itemBuilder: (BuildContext context, int index) {
-                //       return
-                //     },
-                //     separatorBuilder: (BuildContext context, int index) {
-                //       return SizedBox(width: 12);
-                //     },
-                //   ),
-                // );
+              },
+            ),
+          );
+  }
+
+  Widget buildNumberSelect(stp.Options options, {isDate = false}) {
+    List? list;
+    if (options.settings![LIST] != null) list = options.settings![LIST] as List;
+
+    return list == null || list == []
+        ? Container()
+        : buildSection(
+            visible: controller.isOptionsSelectItem(options.parentId),
+            title: options.name,
+            widget: GetBuilder<StepsController>(
+              builder: (_) {
+                return Container(
+                  height: 62.w,
+                  child: GridView.builder(
+                    padding: EdgeInsets.only(left: 20, right: 20, top: 15),
+                    physics: BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 1,
+                      mainAxisSpacing: 11,
+                      childAspectRatio: 1.23,
+                    ),
+                    itemCount: list!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return buildNumberItem(options.settings!, options.id!, index, isDate: isDate);
+                    },
+                  ),
+                );
               },
             ),
           );
@@ -205,7 +226,7 @@ class StepsView extends GetView<StepsController> {
       multiSelect: object[MULTI_SELECT] ?? false,
     );
     return Container(
-      margin: EdgeInsets.only(right: 13),
+      width: 120.w,
       child: InkWell(
         borderRadius: BorderRadius.circular(14),
         onTap: () {
@@ -224,19 +245,54 @@ class StepsView extends GetView<StepsController> {
             borderRadius: BorderRadius.circular(14),
             color: isSelected ? secondaryColor : null,
           ),
-          padding: EdgeInsets.symmetric(
-            horizontal: double.parse((object[PADDING][X] ?? 14).toString()),
-            vertical: double.parse((object[PADDING][Y] ?? 14).toString()),
-          ),
           child: Center(
             child: CText(
-              style: GoogleFonts.roboto(
-                fontFeatures: [FontFeature.tabularFigures()],
-                fontSize: 15.sp,
-                color: isSelected ? primaryColor : black,
-              ),
+              fontSize: 14.sp,
+              color: isSelected ? primaryColor : black,
+              textAlign: TextAlign.center,
               text: object[LIST][index][TEXT].toString(),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildNumberItem(dynamic object, int optionId, index, {isDate = false}) {
+    var isSelected = controller.isSelected(
+      optionId,
+      object[LIST][index],
+      multiSelect: object[MULTI_SELECT] ?? false,
+    );
+
+    return CButton(
+      radius: 14,
+      opacity: 0.8,
+      onTap: () {
+        controller.select(
+          optionId,
+          object[LIST][index],
+          multiSelect: object[MULTI_SELECT] ?? false,
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 1,
+            color: isSelected ? secondaryColor : Colors.grey[300]!,
+          ),
+          borderRadius: BorderRadius.circular(14),
+          color: isSelected ? secondaryColor : null,
+        ),
+        child: Center(
+          child: CText(
+            textAlign: TextAlign.center,
+            fontSize: isDate ? 13.sp : 15.sp,
+            height: 1.2,
+            color: isSelected ? primaryColor : black,
+            text: isDate
+                ? object[LIST][index][TEXT].toString().replaceAll(' ', '\n')
+                : object[LIST][index][TEXT].toString(),
           ),
         ),
       ),
@@ -331,6 +387,14 @@ class StepsView extends GetView<StepsController> {
           case SIMPLE_SELECT:
             {
               return buildSimpleSelect(step.options![index]);
+            }
+          case NUMBER_SELECT:
+            {
+              return buildNumberSelect(step.options![index]);
+            }
+          case DATE_SELECT:
+            {
+              return buildNumberSelect(step.options![index], isDate: true);
             }
           default:
             {
