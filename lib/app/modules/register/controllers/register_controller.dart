@@ -47,7 +47,7 @@ class RegisterController extends GetxController {
           onSuccess();
         } else {
           var error = value.exception!.graphqlErrors.first.message;
-          showInfo(text: error, title: "Error");
+          CDialog(text: error, title: "Error");
         }
       });
     } else {
@@ -69,7 +69,7 @@ class RegisterController extends GetxController {
         } else {
           l(error: value.exception);
           var error = value.exception!.graphqlErrors.first.message;
-          showInfo(text: error, title: "Error");
+          CDialog(text: error, title: "Error");
         }
       });
     }

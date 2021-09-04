@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:squeeze/app/widgets/custom_button.dart';
 import 'package:squeeze/app/widgets/custom_text.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Future showLoading({Duration? duration}) async {
   await 50.milliseconds.delay();
@@ -25,7 +27,58 @@ hideLoading() {
   }
 }
 
-showInfo({text, title, with2Buttons = false, mainText, cancelText, mainOnTap, cancelOnTap}) {
+CInfo(
+  title,
+  info,
+) {
+  Get.dialog(
+    Material(
+      color: Colors.transparent,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          CText(
+            text: title,
+            textAlign: TextAlign.center,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w600,
+            color: white,
+          ),
+          Container(
+            height: Get.height * .7,
+            width: Get.width * .9,
+            child: Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: CText(text: info),
+            ),
+          ),
+          CButton(
+            width: 40,
+            height: 40,
+            onTap: () {
+              Get.back();
+            },
+            color: Colors.transparent,
+            border: Border.all(width: 0.5, color: white),
+            child: Icon(
+              Icons.close,
+              color: white,
+              size: 20,
+            ),
+          ),
+          SizedBox(height: 40),
+        ],
+      ),
+    ),
+    barrierColor: secondaryColor.withOpacity(0.9),
+  );
+}
+
+CDialog({text, title, with2Buttons = false, mainText, cancelText, mainOnTap, cancelOnTap}) {
   Get.dialog(
     Align(
       child: Container(

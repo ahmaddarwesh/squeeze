@@ -8,6 +8,7 @@ class CTextField extends StatefulWidget {
   final TextEditingController? controller;
   final Widget? leftWidget;
   final double? height;
+  final int? maxLine;
   final TextInputType? textInputType;
   final List<TextInputFormatter>? textInputFormatter;
   final TextInputAction? textInputAction;
@@ -27,6 +28,7 @@ class CTextField extends StatefulWidget {
     this.validator,
     this.height,
     this.readOnly = false,
+    this.maxLine,
   });
 
   @override
@@ -44,6 +46,7 @@ class _CTextFieldState extends State<CTextField> {
     return Container(
       height: widget.height,
       child: TextFormField(
+        maxLines: widget.maxLine,
         textAlignVertical: TextAlignVertical.center,
         style: TextStyle(
           fontSize: 13.sp,

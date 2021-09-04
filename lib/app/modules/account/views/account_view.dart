@@ -99,7 +99,7 @@ class AccountView extends GetView<AccountController> {
       LocaleKeys.logout.tr,
       IC_LOGOUT,
       onTap: () {
-        showInfo(
+        CDialog(
           text: "Logout from your account?",
           title: "Logout",
           with2Buttons: true,

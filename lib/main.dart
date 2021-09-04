@@ -32,16 +32,21 @@ class MyApp extends GetView<AppController> {
       child: ScreenUtilInit(
         designSize: Size(360, 690),
         builder: () {
-          return GetMaterialApp(
-            title: LocaleKeys.app_name,
-            initialRoute: AppPages.INITIAL,
-            getPages: AppPages.routes,
-            locale: Locale(Sessions.read(LANGUAGE, def: EN)),
-            theme: Themes.light,
-            debugShowCheckedModeBanner: false,
-            transitionDuration: 250.milliseconds,
-            translationsKeys: AppTranslation.translations,
-            defaultTransition: Transition.rightToLeft,
+          return GestureDetector(
+            onTap: () {
+              Get.focusScope!.unfocus();
+            },
+            child: GetMaterialApp(
+              title: LocaleKeys.app_name,
+              initialRoute: AppPages.INITIAL,
+              getPages: AppPages.routes,
+              locale: Locale(Sessions.read(LANGUAGE, def: EN)),
+              theme: Themes.light,
+              debugShowCheckedModeBanner: false,
+              transitionDuration: 250.milliseconds,
+              translationsKeys: AppTranslation.translations,
+              defaultTransition: Transition.rightToLeft,
+            ),
           );
         },
       ),

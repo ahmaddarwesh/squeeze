@@ -36,7 +36,7 @@ class LoginController extends GetxController {
         } else {
           printTheError(exception: value.exception);
           var error = value.exception!.graphqlErrors.first.message;
-          showInfo(text: error, title: "Error");
+          CDialog(text: error, title: "Error");
         }
       });
     } else {
@@ -58,7 +58,7 @@ class LoginController extends GetxController {
         } else {
           l(error: value.exception);
           var error = value.exception!.graphqlErrors.first.message;
-          showInfo(text: error, title: "Error");
+          CDialog(text: error, title: "Error");
         }
       });
     }
