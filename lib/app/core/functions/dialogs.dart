@@ -44,7 +44,7 @@ CInfo(
             fontWeight: FontWeight.w600,
             color: white,
           ),
-          Container(
+          SizedBox(
             height: Get.height * .7,
             width: Get.width * .9,
             child: Container(

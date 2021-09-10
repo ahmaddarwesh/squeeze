@@ -15,17 +15,15 @@ class SelectLanguageView extends GetView<SelectLanguageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,
-      body: Container(
+      body: Padding(
         padding: EdgeInsets.only(right: 30, left: 30, top: 10),
         child: Column(
           crossAxisAlignment: AppController.to.crossAxisAlignment,
           children: [
             SizedBox(height: AppBar().preferredSize.height),
-            Container(
-              child: Directionality(
-                textDirection: AppController.to.textDirection,
-                child: FindTheBest(),
-              ),
+            Directionality(
+              textDirection: AppController.to.textDirection,
+              child: FindTheBest(),
             ),
             GetBuilder<SelectLanguageController>(
               builder: (_) => Container(

@@ -3,7 +3,7 @@ import 'package:squeeze/app/core/client/graphql_client.dart';
 
 class StepsProvider {
   static var document = r'''  
-    query Query($stepsOrderBy: [StepOrderByInput!], $optionsOrderBy: [StepOptionOrderByInput!]) {
+    query Query($stepsOrderBy: [StepOrderByWithRelationInput!], $optionsOrderBy: [StepOptionOrderByWithRelationInput!]) {
       steps(orderBy: $stepsOrderBy) {
         id
         index

@@ -3,9 +3,8 @@ import 'package:get/get.dart';
 import 'package:squeeze/app/core/client/graphql_client.dart';
 import 'package:squeeze/app/core/constant/app_constants.dart';
 import 'package:squeeze/app/core/functions/dialogs.dart';
-import 'package:squeeze/app/core/logger/logger.dart';
 import 'package:squeeze/app/core/sessions/sessions.dart';
-import 'package:squeeze/app/data/models/update_profie_input_model.dart';
+import 'package:squeeze/app/data/models/update_profile_input_model.dart';
 import 'package:squeeze/app/data/models/user_model.dart';
 import 'package:squeeze/app/data/providers/update_profile_provider.dart';
 import 'package:squeeze/app/data/repositories/me_repository.dart';
@@ -26,13 +25,11 @@ class ProfileController extends GetxController {
     if (formData.currentState!.validate()) {
       prepareInput();
       showLoading();
-      l(debug: updateProfileInput.toJson());
       await UpdateProfileProvider.update(updateProfileInput).then((value) {
         if (value.hasException)
           printTheError(exception: value.exception);
         else {
           var user = User.fromJson(value.data!["updateUser"]);
-          l(debug: user.toJson());
           MeRepository.saveProfile(user);
           this.user = user;
           changeCanUpdate();
@@ -85,7 +82,12 @@ class ProfileController extends GetxController {
 
   @override
   void onInit() {
-    user = User.fromJson(Sessions.read(MY_PROFILE_INFO));
+    var jsUser = Sessions.read(MY_PROFILE_INFO);
+    if (jsUser is User) {
+      user = jsUser;
+    } else {
+      user = User.fromJson(jsUser);
+    }
 
     firstNameController = TextEditingController(text: user.firstName);
     lastNameController = TextEditingController(text: user.lastName);

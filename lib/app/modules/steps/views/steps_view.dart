@@ -8,7 +8,6 @@ import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:get/get.dart';
 import 'package:squeeze/app/core/constant/remote_constants.dart';
 import 'package:squeeze/app/core/functions/dialogs.dart';
-import 'package:squeeze/app/core/logger/logger.dart';
 import 'package:squeeze/app/data/models/step_model.dart' as stp;
 import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:squeeze/app/widgets/custom_button.dart';
@@ -57,7 +56,7 @@ class StepsView extends GetView<StepsController> {
     );
   }
 
-  Center buildComingSoon() {
+  Widget buildComingSoon() {
     return Center(
       child: CText(
         text: "Coming soon.",
@@ -121,7 +120,7 @@ class StepsView extends GetView<StepsController> {
       },
       widget: GetBuilder<StepsController>(
         builder: (_) {
-          return Container(
+          return SizedBox(
             height: 60.w,
             child: ListView.separated(
               padding: EdgeInsets.only(left: 15, right: 15, top: 15),
@@ -152,7 +151,7 @@ class StepsView extends GetView<StepsController> {
       title: options.name,
       widget: GetBuilder<StepsController>(
         builder: (_) {
-          return Container(
+          return SizedBox(
             height: 62.w,
             child: GridView.builder(
               padding: EdgeInsets.only(left: 20, right: 20, top: 15),
@@ -184,7 +183,7 @@ class StepsView extends GetView<StepsController> {
       title: options.name,
       widget: GetBuilder<StepsController>(
         builder: (_) => options.settings![SCROLLABLE]
-            ? Container(
+            ? SizedBox(
                 height: 115.w,
                 child: GridView.builder(
                   physics: BouncingScrollPhysics(),
@@ -198,8 +197,9 @@ class StepsView extends GetView<StepsController> {
                   itemBuilder: (BuildContext context, int index) {
                     return buildIconItem(options.settings!, options.id!, index);
                   },
-                ))
-            : Container(
+                ),
+              )
+            : SizedBox(
                 height: 235.w,
                 child: GridView.builder(
                   itemCount: list.length,
@@ -226,7 +226,7 @@ class StepsView extends GetView<StepsController> {
       },
       visible: list.isNotEmpty && controller.isOptionsSelectItem(options.parentId),
       title: options.name,
-      widget: Container(
+      widget: SizedBox(
         height: 140.w,
         child: ListView.separated(
           physics: BouncingScrollPhysics(),
@@ -263,7 +263,7 @@ class StepsView extends GetView<StepsController> {
     );
   }
 
-  CButton buildAddressItem(dynamic object, int optionId, index) {
+  Widget buildAddressItem(dynamic object, int optionId, index) {
     var isSelected = controller.isSelected(
       optionId,
       object[LIST][index],
@@ -320,7 +320,7 @@ class StepsView extends GetView<StepsController> {
       },
       visible: list.isNotEmpty && controller.isOptionsSelectItem(options.parentId),
       title: options.name,
-      widget: Container(
+      widget: Padding(
         padding: EdgeInsets.only(left: 15, right: 15, top: 15),
         child: CTextField(
           maxLine: 5,
@@ -345,7 +345,7 @@ class StepsView extends GetView<StepsController> {
       object[LIST][index],
       multiSelect: object[MULTI_SELECT] ?? false,
     );
-    return Container(
+    return SizedBox(
       width: 120.w,
       child: InkWell(
         borderRadius: BorderRadius.circular(14),
@@ -404,16 +404,15 @@ class StepsView extends GetView<StepsController> {
           borderRadius: BorderRadius.circular(14),
           color: isSelected ? secondaryColor : null,
         ),
-        child: Center(
-          child: CText(
-            textAlign: TextAlign.center,
-            fontSize: isDate ? 13.sp : 15.sp,
-            height: 1.4,
-            color: isSelected ? primaryColor : black,
-            text: isDate
-                ? object[LIST][index][TEXT].toString().replaceAll(' ', '\n')
-                : object[LIST][index][TEXT].toString(),
-          ),
+        alignment: Alignment.center,
+        child: CText(
+          textAlign: TextAlign.center,
+          fontSize: isDate ? 13.sp : 15.sp,
+          height: 1.4,
+          color: isSelected ? primaryColor : black,
+          text: isDate
+              ? object[LIST][index][TEXT].toString().replaceAll(' ', '\n')
+              : object[LIST][index][TEXT].toString(),
         ),
       ),
     );
@@ -439,25 +438,23 @@ class StepsView extends GetView<StepsController> {
         width: 1,
         color: isSelected ? secondaryColor : Colors.grey[300]!,
       ),
-      child: Container(
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: 15,
-              left: 10,
-              right: 10,
-              child: CText(
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                height: 1.1,
-                text: object[LIST][index][TEXT].toString(),
-                color: isSelected ? primaryColor : black,
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w400,
-              ),
-            )
-          ],
-        ),
+      child: Stack(
+        children: [
+          Positioned(
+            bottom: 15,
+            left: 10,
+            right: 10,
+            child: CText(
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              height: 1.1,
+              text: object[LIST][index][TEXT].toString(),
+              color: isSelected ? primaryColor : black,
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w400,
+            ),
+          )
+        ],
       ),
     );
   }
@@ -465,35 +462,33 @@ class StepsView extends GetView<StepsController> {
   Widget buildSection({widget, title, visible = true, showInfo}) {
     return Visibility(
       visible: visible,
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                SizedBox(width: 15),
-                CText(
-                  text: title,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 14.sp,
-                  height: 1,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              SizedBox(width: 15),
+              CText(
+                text: title,
+                fontWeight: FontWeight.w700,
+                fontSize: 14.sp,
+                height: 1,
+              ),
+              SizedBox(width: 8),
+              InkWell(
+                onTap: () {
+                  if (showInfo != null) showInfo();
+                },
+                child: Icon(
+                  FontAwesome.question_circle_o,
+                  size: 12,
                 ),
-                SizedBox(width: 8),
-                InkWell(
-                  onTap: () {
-                    if (showInfo != null) showInfo();
-                  },
-                  child: Icon(
-                    FontAwesome.question_circle_o,
-                    size: 12,
-                  ),
-                )
-              ],
-            ),
-            widget,
-            SizedBox(height: 23),
-          ],
-        ),
+              )
+            ],
+          ),
+          widget,
+          SizedBox(height: 23),
+        ],
       ),
     );
   }

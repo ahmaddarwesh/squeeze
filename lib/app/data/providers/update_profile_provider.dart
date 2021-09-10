@@ -1,6 +1,6 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:squeeze/app/core/client/graphql_client.dart';
-import 'package:squeeze/app/data/models/update_profie_input_model.dart';
+import 'package:squeeze/app/data/models/update_profile_input_model.dart';
 
 class UpdateProfileProvider {
   static var document = r'''

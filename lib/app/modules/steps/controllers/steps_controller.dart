@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:squeeze/app/core/constant/remote_constants.dart';
 import 'package:squeeze/app/core/functions/dialogs.dart';
+import 'package:squeeze/app/core/logger/logger.dart';
 import 'package:squeeze/app/data/models/service_model.dart';
 import 'package:squeeze/app/data/models/step_model.dart';
 import 'package:squeeze/app/data/repositories/step_repository.dart';
@@ -26,6 +27,7 @@ class StepsController extends GetxController {
     await StepRepository.getSteps().then((value) {
       steps.addAll(value);
       savePricing();
+
       update();
     });
     hideLoading();

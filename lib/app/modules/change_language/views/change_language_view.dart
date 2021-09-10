@@ -19,7 +19,7 @@ class ChangeLanguageView extends GetView<ChangeLanguageController> {
       builder: (_) => Scaffold(
         backgroundColor: white,
         body: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             width: Get.width,
             height: Get.height,
             child: Column(
@@ -29,7 +29,7 @@ class ChangeLanguageView extends GetView<ChangeLanguageController> {
                   child: Column(
                     children: [
                       CTitleTopBar(title: LocaleKeys.select_language.tr, horizontalPadding: 0),
-                      Container(
+                      Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: Column(
                           children: [

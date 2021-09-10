@@ -43,7 +43,7 @@ class _CTextFieldState extends State<CTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: widget.height,
       child: TextFormField(
         maxLines: widget.maxLine,

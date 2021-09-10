@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:squeeze/app/theme/app_colors.dart';
 import 'package:squeeze/app/widgets/custom_text.dart';
-import 'package:supercharged/supercharged.dart';
 
 class CButton extends StatelessWidget {
   final String? text;
@@ -21,7 +20,7 @@ class CButton extends StatelessWidget {
   final double? opacity;
   final bool withAnimated;
 
-  CButton({
+  const CButton({
     this.text,
     this.onTap,
     this.child,

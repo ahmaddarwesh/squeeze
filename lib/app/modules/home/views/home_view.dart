@@ -12,7 +12,6 @@ import 'package:squeeze/app/widgets/custom_text.dart';
 import 'package:squeeze/app/widgets/custom_title_top_bar.dart';
 import 'package:squeeze/app_controller.dart';
 import 'package:squeeze/generated/locales.g.dart';
-
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -22,7 +21,7 @@ class HomeView extends GetView<HomeController> {
       builder: (_) => MediaQuery(
         data: Get.mediaQuery.copyWith(textScaleFactor: 1.0),
         child: FittedBox(
-          child: Container(
+          child: SizedBox(
             width: Get.width,
             height: Get.height,
             child: controller.services.isEmpty
@@ -140,22 +139,20 @@ class HomeView extends GetView<HomeController> {
   // }
 
   buildServices() {
-    return Container(
-      child: Column(
-        crossAxisAlignment: AppController.to.crossAxisAlignment,
-        children: [
-          CText(
-            text: LocaleKeys.select_category.tr,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-            fontSize: 15.sp,
-          ),
-          SizedBox(height: 12),
-          GetBuilder<HomeController>(
-            builder: (_) => buildGridView(),
-          )
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: AppController.to.crossAxisAlignment,
+      children: [
+        CText(
+          text: LocaleKeys.select_category.tr,
+          fontWeight: FontWeight.w600,
+          color: Colors.black,
+          fontSize: 15.sp,
+        ),
+        SizedBox(height: 12),
+        GetBuilder<HomeController>(
+          builder: (_) => buildGridView(),
+        )
+      ],
     );
   }
 
@@ -213,25 +210,23 @@ class HomeView extends GetView<HomeController> {
         controller.onServiceTap(service);
       },
       color: secondaryColor,
-      child: Container(
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: 15,
-              left: 10,
-              right: 10,
-              child: CText(
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                text: AppController.to.isEnglish ? service.name! : service.nameAr!,
-                color: primaryColor,
-                fontSize: 10.5.sp,
-                letterSpacing: 0.2,
-                fontWeight: FontWeight.w600,
-              ),
-            )
-          ],
-        ),
+      child: Stack(
+        children: [
+          Positioned(
+            bottom: 15,
+            left: 10,
+            right: 10,
+            child: CText(
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              text: AppController.to.isEnglish ? service.name! : service.nameAr!,
+              color: primaryColor,
+              fontSize: 10.5.sp,
+              letterSpacing: 0.2,
+              fontWeight: FontWeight.w600,
+            ),
+          )
+        ],
       ),
     );
   }

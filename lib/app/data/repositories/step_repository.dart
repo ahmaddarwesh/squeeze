@@ -13,7 +13,7 @@ class StepRepository {
         listServices.add(Step.fromJson(element));
       });
     } else {
-      l(info: result.exception.toString());
+      l(error: result.exception.toString());
     }
     return listServices;
   }

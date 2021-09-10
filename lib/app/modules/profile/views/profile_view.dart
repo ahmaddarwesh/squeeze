@@ -27,7 +27,7 @@ class ProfileView extends GetView<ProfileController> {
               onChanged: () {
                 controller.changeCanUpdate();
               },
-              child: Container(
+              child: SizedBox(
                 width: Get.width,
                 height: Get.height,
                 child: Column(
@@ -37,7 +37,7 @@ class ProfileView extends GetView<ProfileController> {
                       child: Column(
                         children: [
                           CTitleTopBar(title: LocaleKeys.edit_profile.tr, horizontalPadding: 0),
-                          Container(
+                          Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20),
                             child: Column(
                               children: [

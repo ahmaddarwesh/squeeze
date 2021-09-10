@@ -25,17 +25,15 @@ class AccountView extends GetView<AccountController> {
       body: Directionality(
         textDirection: AppController.to.textDirection,
         child: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                !AppController.to.isAuth ? buildLoginItems() : buildAuthItems(),
-              ],
-            ),
+          child: Column(
+            children: [
+              !AppController.to.isAuth ? buildLoginItems() : buildAuthItems(),
+            ],
           ),
         ),
       ),
       bottomNavigationBar: SafeArea(
-        child: Container(
+        child: Padding(
           padding: EdgeInsets.only(bottom: GetPlatform.isAndroid ? 10 : 0),
           child: CText(
             text: LocaleKeys.squeeze_app_version.tr,
@@ -135,8 +133,8 @@ class AccountView extends GetView<AccountController> {
     );
   }
 
-  Container buildFindTheBest() {
-    return Container(
+  Padding buildFindTheBest() {
+    return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: FindTheBest(
         fontSize: 30.sp,
@@ -144,8 +142,8 @@ class AccountView extends GetView<AccountController> {
     );
   }
 
-  Container buildWelcome() {
-    return Container(
+  Align buildWelcome() {
+    return Align(
       alignment: AppController.to.alignment,
       child: CText(
         text: LocaleKeys.welcome.tr,
@@ -160,7 +158,7 @@ class AccountView extends GetView<AccountController> {
   //test
 
   buildBottomSection() {
-    return Container(
+    return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: ListView(
         padding: EdgeInsets.zero,
@@ -184,11 +182,11 @@ class AccountView extends GetView<AccountController> {
       onTap: () {
         if (onTap != null) onTap();
       },
-      child: Container(
+      child: Padding(
         padding: EdgeInsets.symmetric(vertical: 11),
         child: Row(
           children: [
-            Container(
+            SizedBox(
               height: 16.w,
               width: 16.w,
               child: SvgPicture.asset(icon),
@@ -220,7 +218,7 @@ class AccountView extends GetView<AccountController> {
   }
 
   buildAuthOptions() {
-    return Container(
+    return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Directionality(
         textDirection: AppController.to.textDirection,

@@ -25,7 +25,7 @@ class LoginView extends GetView<LoginController> {
         child: Scaffold(
           backgroundColor: white,
           body: SingleChildScrollView(
-            child: Container(
+            child: SizedBox(
               height: Get.height,
               width: Get.width,
               child: Form(
@@ -42,7 +42,7 @@ class LoginView extends GetView<LoginController> {
                       child: Column(
                         children: [
                           CTitleTopBar(title: "Login", horizontalPadding: 0),
-                          Container(
+                          Padding(
                             padding: EdgeInsets.symmetric(horizontal: 15),
                             child: Column(
                               children: [
@@ -148,7 +148,7 @@ class LoginView extends GetView<LoginController> {
   Widget buildVerificationCode() {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
+      body: SizedBox(
         height: Get.height * .7,
         child: Column(
           children: [
@@ -156,7 +156,7 @@ class LoginView extends GetView<LoginController> {
               title: "Verification code",
               horizontalPadding: 0,
             ),
-            Container(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
@@ -189,7 +189,7 @@ class LoginView extends GetView<LoginController> {
   }
 
   buildPinCode() {
-    return Container(
+    return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: PinCodeTextField(
         length: 6,

@@ -28,7 +28,7 @@ class RegisterView extends GetView<RegisterController> {
         child: Scaffold(
           backgroundColor: white,
           body: SingleChildScrollView(
-            child: Container(
+            child: SizedBox(
               height: Get.height,
               width: Get.width,
               child: Form(
@@ -45,7 +45,7 @@ class RegisterView extends GetView<RegisterController> {
                       child: Column(
                         children: [
                           CTitleTopBar(title: "Sign Up", horizontalPadding: 0),
-                          Container(
+                          Padding(
                             padding: EdgeInsets.symmetric(horizontal: 15),
                             child: Column(
                               children: [
@@ -184,7 +184,7 @@ class RegisterView extends GetView<RegisterController> {
   Widget buildVerificationCode() {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
+      body: SizedBox(
         height: Get.height * .7,
         child: Column(
           children: [
@@ -192,7 +192,7 @@ class RegisterView extends GetView<RegisterController> {
               title: "Verification code",
               horizontalPadding: 0,
             ),
-            Container(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
@@ -225,7 +225,7 @@ class RegisterView extends GetView<RegisterController> {
   }
 
   buildPinCode() {
-    return Container(
+    return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: PinCodeTextField(
         length: 6,
